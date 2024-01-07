@@ -1,0 +1,11 @@
+.login {
+    background-color: hsla(266, 83%, 31%, 1);
+    background-image:
+        radial-gradient(at 94% 84%, hsla(252, 91%, 49%, 1) 0px, transparent 50%),
+        radial-gradient(at 21% 87%, hsla(266, 86%, 44%, 1) 0px, transparent 50%);
+}
+
+.albumModal {
+    background-image: linear-gradient(black 90%, lime);
+    opacity: 50%;
+}

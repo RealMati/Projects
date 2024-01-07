@@ -5,6 +5,8 @@ import { AuthModule } from './auth/auth.module';
 import { AlbumsModule } from './albums/albums.module';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [

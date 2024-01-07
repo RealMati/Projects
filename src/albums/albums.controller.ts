@@ -4,6 +4,7 @@ import { Album } from './schemas/album.schema';
 import { CreateAlbumDto } from './dto/create-album.dto';
 import { UpdateAlbumDto } from './dto/update-album.dto';
 import { AuthGuard } from '@nestjs/passport';
+import { Request, Response } from 'express'
 
 @Controller('albums')
 export class AlbumsController {
@@ -12,8 +13,8 @@ export class AlbumsController {
     ) { }
 
     @Get()
-    async getAllAlbums(): Promise<Album[]> {
-        return this.albumService.findAll()
+    async getAllAlbums(@Req() req: Request): Promise<Album[]> {
+        return this.albumService.findAll(req)
     }
 
     @Get(':id')
@@ -22,22 +23,17 @@ export class AlbumsController {
     }
 
     @Post()
-    @UseGuards(AuthGuard())
-    async createAlbum(@Body() album: CreateAlbumDto, @Req() req): Promise<Album> {
-        return this.albumService.createAlbum(album, req.user)
+    async createAlbum(@Req() req: Request): Promise<Album> {
+        return this.albumService.createAlbum(req)
     }
 
-    // check if the album belongs to the artist that is making the request
     @Put(':id')
-    @UseGuards(AuthGuard())
-    async updateAlbum(@Param('id') id: string, @Body() album: UpdateAlbumDto) {
-        return await this.albumService.updateById(id, album)
+    async updateAlbum(@Param('id') id: string, @Req() req: Request) {
+        return await this.albumService.updateById(id, req)
     }
 
-    // check if the album belongs to the artist that is making the request
     @Delete(':id')
-    @UseGuards(AuthGuard())
-    async deleteAblum(@Param('id') id: string) {
-        return await this.albumService.deleteById(id)
+    async deleteAblum(@Param('id') id: string, @Req() req: Request) {
+        return await this.albumService.deleteById(id, req)
     }
 }

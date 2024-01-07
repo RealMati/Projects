@@ -8,9 +8,6 @@ export class UpdateAlbumDto {
     readonly title: string
 
     @IsOptional()
-    readonly type: "Album" | "Single"
-
-    @IsOptional()
     readonly genre: string
 
     @IsOptional()
@@ -18,7 +15,4 @@ export class UpdateAlbumDto {
 
     @IsOptional()
     readonly image: string
-
-    @IsEmpty({ message: "User ID can't be manually passed." })
-    readonly artist: Artist
 }

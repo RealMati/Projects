@@ -19,8 +19,8 @@ export class Album {
     @Prop()
     image: string
 
-    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Artist' })
-    artist: Artist
+    @Prop()
+    artist: string
 }
 
 export const AlbumSchema = SchemaFactory.createForClass(Album)

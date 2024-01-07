@@ -15,5 +15,5 @@ export class CreateAlbumDto {
     readonly image: string
 
     @IsEmpty({ message: "User ID can't be manually passed." })
-    readonly artist: Artist
+    readonly artist: string
 }

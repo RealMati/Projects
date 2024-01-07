@@ -20,7 +20,7 @@ export class AuthService {
         const hashedPwd = await bcrypt.hash(reqBody.password, 10)
         artistObj.password = hashedPwd
         const artist = await this.artistModel.create(artistObj)
-
+        console.log(artist)
         const accessToken = this.jwtService.sign({ id: artist._id })
         return { token: accessToken }
     }
@@ -32,9 +32,10 @@ export class AuthService {
             throw new UnauthorizedException('Invalid email or password')
         }
         const valid = await bcrypt.compare(accObj.password, artist.password)
-        const accessToken = this.jwtService.sign({ id: artist._id })
+        let accessToken: string
+        if (valid) {
+            accessToken = this.jwtService.sign({ id: artist._id })
+        }
         return { token: accessToken }
     }
-
-
 }
