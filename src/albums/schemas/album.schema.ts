@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import mongoose from "mongoose";
 import { Artist } from "src/auth/schema/artist.schema";
+import { Song } from "./song";
 
 @Schema()
 export class Album {
@@ -21,6 +22,9 @@ export class Album {
 
     @Prop()
     artist: string
+
+    @Prop()
+    songs: Song[]
 }
 
 export const AlbumSchema = SchemaFactory.createForClass(Album)

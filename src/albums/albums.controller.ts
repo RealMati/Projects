@@ -36,4 +36,15 @@ export class AlbumsController {
     async deleteAblum(@Param('id') id: string, @Req() req: Request) {
         return await this.albumService.deleteById(id, req)
     }
+
+    // routes for songs
+    @Post('songs/:id')
+    async addSong(@Param('id') id: string, @Req() req: Request) {
+        return await this.albumService.addSong(id, req)
+    }
+
+    @Delete('songs/:id')
+    async removeSong(@Param('id') id: string, @Req() req: Request) {
+        return await this.albumService.removeSong(id, req)
+    }
 }

@@ -8,6 +8,7 @@ import { ObjectId } from 'mongoose';
 import { Request } from 'express'
 import { CreateAlbumDto } from './dto/create-album.dto';
 import { UpdateAlbumDto } from './dto/update-album.dto';
+import { Song } from './schemas/song';
 
 @Injectable()
 export class AlbumsService {
@@ -56,8 +57,8 @@ export class AlbumsService {
             throw new BadRequestException('Empty data set')
         }
         const artistFromToken: any = await this.parseToken(req)
-        const artistFromAlbum = await this.albumModel.findById(id)
-        if (artistFromToken._id.valueOf() !== artistFromAlbum.artist) {
+        const album = await this.albumModel.findById(id)
+        if (artistFromToken._id.valueOf() !== album.artist) {
             throw new UnauthorizedException('Only creators of an album can edit it.')
         }
         return await this.albumModel.findByIdAndUpdate(id, updates)
@@ -72,6 +73,50 @@ export class AlbumsService {
         return await this.albumModel.findByIdAndDelete(id)
     }
 
+    async addSong(id: string, req: Request) {
+        const song: Song = req.body
+        if (!song) {
+            throw new BadRequestException('Empty data set')
+        }
+        const artistFromToken: any = await this.parseToken(req)
+        const album = await this.albumModel.findById(id)
+        if (artistFromToken._id.valueOf() !== album.artist) {
+            throw new UnauthorizedException('Only creators of an album can add songs')
+        }
+        const duplicateName = album.songs.find(item => item.name === song.name)
+        if (duplicateName) {
+            throw new BadRequestException('A song with a similar name already exists on this album')
+        }
+        album.songs.push(song)
+        await album.save()
+        return album.songs
+    }
+
+    async removeSong(id: string, req: Request) {
+        const song: Song = req.body
+        if (!song) {
+            throw new BadRequestException('Empty data set')
+        }
+        const artistFromToken: any = await this.parseToken(req)
+        const album = await this.albumModel.findById(id)
+        if (artistFromToken._id.valueOf() !== album.artist) {
+            throw new UnauthorizedException('Only creators of an album can remove songs')
+        }
+        let found = false
+        album.songs = album.songs.filter(item => {
+            if (item.name === song.name) {
+                found = true
+                return false
+            }
+            return true
+        })
+        if (!found) {
+            throw new BadRequestException('Song does not exist in the Album')
+        }
+        await album.save()
+        return album.songs
+    }
+
     async parseToken(req: Request) {
         try {
             if (!req.cookies?.accessToken) {
@@ -79,6 +124,7 @@ export class AlbumsService {
             }
             const token = req.cookies.accessToken
             const decoded = await jwt.verify(token, process.env.JWT_ACCESS_KEY)
+
             const idStr = (decoded as any).id
             const artist = await this.artistModel.findById(idStr)
             if (!artist) {
