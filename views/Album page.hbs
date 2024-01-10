@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="../public/css/public.css">
     <link rel="icon" href="images/masinko-logo-purp.png">
     <link rel="stylesheet" href="../public/css/bg.css">
- 
+
   
-    <title>Masinqo | Artist Home</title>
+    <title>Masinqo | Album page</title>
 
 
     <style>
@@ -26,7 +26,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 9999; 
+    z-index: 9999; /* Ensure it's above other content */
 }
 
 #modalBackground {
@@ -35,8 +35,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.75); 
-    z-index: -1; 
+    background-color: rgba(0, 0, 0, 0.75); /* Adjust opacity as needed */
+    z-index: -1; /* Place it below the modal content */
 }
 
 *{
@@ -72,7 +72,7 @@
                     <svg width="38" height="37" viewBox="0 0 38 37" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5  hidden sm:block " onmouseover="this.style.fill='blue'" onmouseout="this.style.fill='white'">
                         <path d="M35.9273 9.72673L21.9018 0.831814C21.0368 0.288798 20.0293 0 19 0C17.9707 0 16.9632 0.288798 16.0982 0.831814L2.07273 9.72673C1.45396 10.0857 0.939106 10.592 0.576531 11.1979C0.213957 11.8038 0.0155662 12.4895 0 13.1905V37H15.5455V27.6343H22.4545V37H38V13.1905C37.9844 12.4895 37.786 11.8038 37.4235 11.1979C37.0609 10.592 36.546 10.0857 35.9273 9.72673ZM34.5455 33.6371H25.9091V24.2714H12.0909V33.6371H3.45455V13.1905C3.46716 13.0534 3.51487 12.9215 3.59332 12.807C3.67177 12.6924 3.77846 12.5988 3.90364 12.5348L17.9291 3.63985C18.2365 3.45885 18.5889 3.36316 18.9482 3.36316C19.3074 3.36316 19.6599 3.45885 19.9673 3.63985L33.9927 12.5348C34.1179 12.5988 34.2246 12.6924 34.303 12.807C34.3815 12.9215 34.4292 13.0534 34.4418 13.1905L34.5455 33.6371Z" fill="white"/>
                       </svg>
-                    <li><a href="artist-home.html" class="text-white hover:text-blue-200">Home</a></li>
+                    <li><a href="#" class="text-white hover:text-blue-200">Home</a></li>
                 </div>
                 <div class="flex items-center gap-1 md:gap-2">
                     <svg width="51" height="52" viewBox="0 0 51 52" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7  hidden sm:block addIcon" >
@@ -152,7 +152,7 @@
                 <p>Description: string</p>
                 <div class="flex justify-between mt-3 w-full sm:w-4/5 lg:w-3/5">
                     <div class="bg-zinc-300 bg-opacity-0 rounded-[10px] border-2 border-teal-300 flex justify-between items-center gap-2 px-4 py-1 hover:bg-neutral-900 hover:border-indigo-400">
-                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5">
+                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" id="editIcon">
                             <path d="M23.6667 2L32 10.3333L10.3333 32H2V23.6667L23.6667 2Z" stroke="#75E1DA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                           </svg>
                         <p>Edit Album </p>
@@ -268,6 +268,71 @@
 
 
 
+    <div class="bg-black bg-opacity-75 absolute h-screen w-screen hidden text-slate-50" id="modalContainer2">
+        <div class="h-full w-full opacity-0 -z-10 " id="modalBackground2"></div>
+        <div
+            class="bg-gray-950 w-9/12 max-w-lg h-min absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center py-8 border border-teal-500 rounded-lg">
+            <div class="flex items-center gap-3">
+                <img src="../public/images/pencil.svg" alt="" class="w-10 h-10">
+                <p class="text-3xl">Edit Album</p>
+            </div>
+            <form action="" class="flex flex-col gap-3 my-4 w-8/12 text-white">
+                <p class="italic text-center text-white font-semibold">*Leave unchanged fields empty.</p>
+                <div class="flex flex-col">
+                    <label for="albumName" class="text-lg mb-1 text-white">Album Name</label>
+                    <input type="text" name="albumName" class="bg-slate-900 py-1 px-2 outline-none rounded-md">
+                </div>
+                <div class="flex flex-col">
+                    <label for="genre" class="text-lg mb-1">Genre</label>
+                    <input type="text" name="genre" class="bg-slate-900 py-1 px-2 outline-none rounded-md">
+                </div>
+                <div class="flex flex-col">
+                    <label for="description" class="text-lg mb-1">Description</label>
+                    <textarea name="description" rows="3"
+                        class="bg-slate-900 py-1 px-2 outline-none rounded-md"></textarea>
+                </div>
+                <div class="flex flex-col">
+                    <label for="cover" class="text-lg mb-1">Cover Image</label>
+                    <input type="file" name="cover" class="text-center">
+                </div>
+            </form>
+            <div class="flex flex-col items-center w-6/12">
+                <h2 class="mt-2 text-2xl mb-2">Tracks</h2>
+                <div class="w-full">
+                    <div class="flex justify-between items-center border-t-2 border-teal-500 py-1">
+                        <p class="font-semibold">Track Name</p>
+                        <img src="../public/images/delete-icon.svg" alt="" class="w-5 h-5">
+                    </div>
+                    <div class="flex justify-between items-center border-t-2 border-teal-500 py-1">
+                        <p class="font-semibold">Track Name</p>
+                        <img src="../public/images/delete-icon.svg" alt="" class="w-5 h-5">
+                    </div>
+                    <div class="flex justify-between items-center border-t-2 border-teal-500 py-1">
+                        <p class="font-semibold">Track Name</p>
+                        <img src="../public/images/delete-icon.svg" alt="" class="w-5 h-5">
+                    </div>
+                    <div class="flex justify-between items-center border-t-2 border-teal-500 py-1">
+                        <p class="font-semibold">Track Name</p>
+                        <img src="../public/images/delete-icon.svg" alt="" class="w-5 h-5">
+                    </div>
+                    <div class="flex justify-between items-center border-t-2 border-teal-500 py-1">
+                        <p class="font-semibold">Track Name</p>
+                        <img src="../public/images/delete-icon.svg" alt="" class="w-5 h-5">
+                    </div>
+                    <div class="flex justify-between items-center border-t-2 border-teal-500 py-1">
+                        <p class="font-semibold">Track Name</p>
+                        <img src="../public/images/delete-icon.svg" alt="" class="w-5 h-5">
+                    </div>
+                </div>
+            </div>
+            <button
+                class="bg-teal-500 border-2 border-teal-500 px-4 py-2 w-min mt-6 mx-auto rounded-3xl hover:bg-transparent hover:text-teal-500"
+                type="submit">
+                Save
+            </button>
+        </div>
+    </div>
+
     <script>
         const modalContainer = document.getElementById('modalContainer');
         const modalBackground = document.getElementById('modalBackground');
@@ -286,8 +351,25 @@ addIcons.forEach(addIcon => {
                 modalContainer.style.display = 'none';
             }
         });
+        
+
+        const modalContainer2 = document.getElementById('modalContainer2');
+        const modalBackground2 = document.getElementById('modalBackground2');
+        const editIcon = document.getElementById('editIcon');
+    
+        editIcon.addEventListener('click', function () {
+            modalContainer2.style.display = 'block';
+        });
+    
+        modalBackground2.addEventListener('click', function (event) {
+            if (event.target === modalBackground2) {
+                modalContainer2.style.display = 'none';
+            }
+        });
+
+
     </script>
-     
+      
     
 </body>
 </html>
