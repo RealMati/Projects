@@ -2,7 +2,11 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello World!';
+  sendToHome(req): { url: string } {
+    if (req.cookies.accessToken) {
+      return { url: '/albums' };
+    } else {
+      return { url: '/auth/login' }
+    }
   }
 }
