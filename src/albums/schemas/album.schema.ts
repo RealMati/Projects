@@ -18,7 +18,7 @@ export class Album {
     description: string
 
     @Prop()
-    image: string
+    albumArtPath: string
 
     @Prop()
     artist: string
