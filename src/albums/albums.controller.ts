@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpStatus, NotFoundException, Param, Patch, Post, Put, Query, Render, Req, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpStatus, NotFoundException, Param, Patch, Post, Put, Query, Redirect, Render, Req, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { AlbumsService } from './albums.service';
 import { Album } from './schemas/album.schema';
 import { Request, Response } from 'express'
@@ -15,11 +15,12 @@ export class AlbumsController {
 
     @Get()
     @Render('artist-home')
-    async getAllAlbums(@Req() req: Request, @Res() res: Response, @Query() query: EQuery): Promise<Album[]> {
-        return this.albumService.findAll(req, res, query)
+    async getAllAlbums(@Req() req: Request, @Query() query: EQuery): Promise<Album[]> {
+        return this.albumService.findAll(req, query)
     }
 
     @Get(':id')
+    @Render('album-page')
     async findAlbumById(@Param('id') id: string): Promise<Album> {
         return this.albumService.findById(id)
     }
@@ -44,18 +45,18 @@ export class AlbumsController {
             }
         },
     }))
-    async createAlbum(@Req() req: Request, @Res() res: Response, @UploadedFile() file: Express.Multer.File): Promise<Album> {
-        return this.albumService.createAlbum(req, res, file)
+    async createAlbum(@Req() req: Request, @UploadedFile() file: Express.Multer.File): Promise<Album> {
+        return this.albumService.createAlbum(req, file)
     }
 
     @Put(':id')
-    async updateAlbum(@Param('id') id: string, @Req() req: Request, @Res() res: Response) {
-        return await this.albumService.updateById(id, req, res)
+    async updateAlbum(@Param('id') id: string, @Req() req: Request) {
+        return await this.albumService.updateById(id, req)
     }
 
     @Delete(':id')
-    async deleteAblum(@Param('id') id: string, @Req() req: Request, @Res() res: Response) {
-        return await this.albumService.deleteById(id, req, res)
+    async deleteAblum(@Param('id') id: string, @Req() req: Request) {
+        return await this.albumService.deleteById(id, req)
     }
 
     // routes for songs
@@ -79,12 +80,12 @@ export class AlbumsController {
             }
         },
     }))
-    async addSong(@Param('id') id: string, @Req() req: Request, @Res() res: Response, @UploadedFile() file: Express.Multer.File) {
-        return await this.albumService.addSong(id, req, res, file)
+    async addSong(@Param('id') id: string, @Req() req: Request, @UploadedFile() file: Express.Multer.File) {
+        return await this.albumService.addSong(id, req, file)
     }
 
     @Delete('songs/:id')
-    async removeSong(@Param('id') id: string, @Req() req: Request, @Res() res: Response) {
-        return await this.albumService.removeSong(id, req, res)
+    async removeSong(@Param('id') id: string, @Req() req: Request) {
+        return await this.albumService.removeSong(id, req)
     }
 }

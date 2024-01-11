@@ -18,6 +18,9 @@ export class Album {
     description: string
 
     @Prop()
+    date: Date
+
+    @Prop()
     albumArtPath: string
 
     @Prop()
