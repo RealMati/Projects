@@ -4,17 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/artist-home.css">
-    <link rel="icon" href="/images/masinko-logo-purp.png">
-    <link rel="stylesheet" href="/css/bg.css">
-    <link rel="stylesheet" href="/css/public.css">
-    <link rel="icon" href="/images/masinko-logo-purp.png">
-    <link rel="stylesheet" href="/css/bg.css">
+    <!-- <link rel="stylesheet" href="../public/css/artist-home.css"> -->
+    <link rel="icon" href="../public/images/masinko-logo-purp.png">
+    <link rel="stylesheet" href="../public/css/bg.css">
+    <link rel="stylesheet" href="../public/css/public.css">
+    <link rel="stylesheet" href="../public/css/albumPage.css">
+    <link rel="icon" href="../public/images/masinko-logo-purp.png">
+    <link rel="stylesheet" href="../public/css/bg.css">
     <title>Masinqo | Album page</title>
     <style>
         #modalContainer {
             display: flex;
-            align-items: center;
+            align-items: center;../public
             justify-content: center;
             position: fixed;
             top: 0;
@@ -62,7 +63,7 @@
     <header>
         <nav class=" flex justify-between items-center">
             <div class="flex items-center ">
-                <img src="/images/masinko-logo-white.png" alt="logo" class="w-[50px]">
+                <img style="width: 50px;" src="../public/images/masinko-logo-white.png" alt="logo" class="w-[50px]">
                 <a href="#" class="text-white text-lg font-semibold hidden sm:block">Masinqo</a>
             </div>
 
@@ -124,7 +125,7 @@
     </header>
     <main class="flex-col items-center">
         <div id="artistProfile" class="container mx-auto mb-6 flex items-center gap-6">
-            <img src="/images/artistPlaceholder.png" alt="artist profile rounded"
+            <img src="../public/images/artistPlaceholder.png" alt="artist profile rounded"
                 class="text-white rounded-full shadow border-2 border-purple-400 h-28"
                 style="box-shadow: 0px 4px 25px 0px rgba(103, 215, 250, 0.25);">
             <p class="text-white font-extralight font-['Inter'] text-5xl sm:text-6xl">Artist Name</p>
@@ -132,7 +133,7 @@
         <div id="AlbumDetail" class="flex  items-center pl-4 sm:pl-20">
             <div class="w-2/5 flex justify-end  pr-2 sm:pr-6">
                 <div class="relative">
-                    <img id="AlbumArt" src="/images/albumPlaceholder.png" alt="Album Art " class="w-80">
+                    <img id="AlbumArt" src="../public/images/albumPlaceholder.png" alt="Album Art " class="w-80">
                     <div
                         class="flex items-center justify-start bg-zinc-800 bg-opacity-50 rounded-[32px] absolute left-0 bottom-1 pl-2 w-[99%]  gap-1">
                         <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -245,7 +246,7 @@
                 <div
                     class=" rounded-[5px] border-2 border-white flex justify-between items-center py-1 px-5 hover:bg-neutral-900 hover:border-indigo-400">
                     <div class="flex gap-4 items-center">
-                        <img src="/images/albumPlaceholder.png" alt="Album Art for the Track" class="h-10"
+                        <img src="../public/images/albumPlaceholder.png" alt="Album Art for the Track" class="h-10"
                             style="border: 1px solid #797A7A;">
                         <p class="text-lg">#No Track Names</p>
 
@@ -255,7 +256,7 @@
                 <div
                     class=" rounded-[5px] border-2 border-white flex justify-between items-center py-1 px-5 hover:bg-neutral-900 hover:border-indigo-400">
                     <div class="flex gap-4 items-center">
-                        <img src="/images/albumPlaceholder.png" alt="Album Art for the Track" class="h-10"
+                        <img src="../public/images/albumPlaceholder.png" alt="Album Art for the Track" class="h-10"
                             style="border: 1px solid #797A7A;">
                         <p class="text-lg">#No Track Names</p>
 
@@ -265,7 +266,7 @@
                 <div
                     class=" rounded-[5px] border-2 border-white flex justify-between items-center py-1 px-5 hover:bg-neutral-900 hover:border-indigo-400">
                     <div class="flex gap-4 items-center">
-                        <img src="/images/albumPlaceholder.png" alt="Album Art for the Track" class="h-10"
+                        <img src="../public/images/albumPlaceholder.png" alt="Album Art for the Track" class="h-10"
                             style="border: 1px solid #797A7A;">
                         <p class="text-lg">#No Track Names</p>
 
@@ -275,7 +276,7 @@
                 <div
                     class=" rounded-[5px] border-2 border-white flex justify-between items-center py-1 px-5 hover:bg-neutral-900 hover:border-indigo-400">
                     <div class="flex gap-4 items-center">
-                        <img src="/images/albumPlaceholder.png" alt="Album Art for the Track" class="h-10"
+                        <img src="../public/images/albumPlaceholder.png" alt="Album Art for the Track" class="h-10"
                             style="border: 1px solid #797A7A;">
                         <p class="text-lg">#No Track Names</p>
 
@@ -290,7 +291,7 @@
         <div
             class="bg-gray-950 w-9/12 max-w-md h-min absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center py-6 border border-fuchsia-600 rounded-lg">
             <div class="flex items-center gap-3">
-                <img src="/images/pencil-purp.svg" alt="" class="w-10 h-10">
+                <img src="../public/images/pencil-purp.svg" alt="" class="w-10 h-10">
                 <p class="text-3xl">Add Music</p>
             </div>
             <form action="" class="flex flex-col gap-3 my-4 w-8/12 text-white">
@@ -335,7 +336,7 @@
         <div
             class="bg-gray-950 w-9/12 max-w-lg h-min absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center py-8 border border-teal-500 rounded-lg">
             <div class="flex items-center gap-3">
-                <img src="/images/pencil.svg" alt="" class="w-10 h-10">
+                <img src="../public/images/pencil.svg" alt="" class="w-10 h-10">
                 <p class="text-3xl">Edit Album</p>
             </div>
             <form action="" class="flex flex-col gap-3 my-4 w-8/12 text-white">
@@ -363,27 +364,27 @@
                 <div class="w-full">
                     <div class="flex justify-between items-center border-t-2 border-teal-500 py-1">
                         <p class="font-semibold">Track Name</p>
-                        <img src="/images/delete-icon.svg" alt="" class="w-5 h-5">
+                        <img src="../public/images/delete-icon.svg" alt="" class="w-5 h-5">
                     </div>
                     <div class="flex justify-between items-center border-t-2 border-teal-500 py-1">
                         <p class="font-semibold">Track Name</p>
-                        <img src="/images/delete-icon.svg" alt="" class="w-5 h-5">
+                        <img src="../public/images/delete-icon.svg" alt="" class="w-5 h-5">
                     </div>
                     <div class="flex justify-between items-center border-t-2 border-teal-500 py-1">
                         <p class="font-semibold">Track Name</p>
-                        <img src="/images/delete-icon.svg" alt="" class="w-5 h-5">
+                        <img src="../public/images/delete-icon.svg" alt="" class="w-5 h-5">
                     </div>
                     <div class="flex justify-between items-center border-t-2 border-teal-500 py-1">
                         <p class="font-semibold">Track Name</p>
-                        <img src="/images/delete-icon.svg" alt="" class="w-5 h-5">
+                        <img src="../public/images/delete-icon.svg" alt="" class="w-5 h-5">
                     </div>
                     <div class="flex justify-between items-center border-t-2 border-teal-500 py-1">
                         <p class="font-semibold">Track Name</p>
-                        <img src="/images/delete-icon.svg" alt="" class="w-5 h-5">
+                        <img src="../public/images/delete-icon.svg" alt="" class="w-5 h-5">
                     </div>
                     <div class="flex justify-between items-center border-t-2 border-teal-500 py-1">
                         <p class="font-semibold">Track Name</p>
-                        <img src="/images/delete-icon.svg" alt="" class="w-5 h-5">
+                        <img src="../public/images/delete-icon.svg" alt="" class="w-5 h-5">
                     </div>
                 </div>
             </div>
