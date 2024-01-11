@@ -14,7 +14,7 @@ export class AlbumsController {
     ) { }
 
     @Get()
-    @Render('artist.home')
+    @Render('artist-home')
     async getAllAlbums(@Req() req: Request, @Res() res: Response, @Query() query: EQuery): Promise<Album[]> {
         return this.albumService.findAll(req, res, query)
     }
