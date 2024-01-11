@@ -9,6 +9,7 @@ import { Request } from 'express'
 import { Song } from './schemas/song';
 import { existsSync, unlinkSync } from 'fs';
 import { extname, join } from 'path';
+import { Query as EQuery } from 'express-serve-static-core';
 
 @Injectable()
 export class AlbumsService {
@@ -42,12 +43,21 @@ export class AlbumsService {
     }
 
     // GET to /albums
-    async findAll(req: Request): Promise<Album[]> {
+    async findAll(req: Request, query: EQuery): Promise<Album[]> {
         const artist: any = await this.parseToken(req)
         if (!artist) {
             throw new BadRequestException('Cookie not found')
         }
-        const albums = await this.albumModel.find({ artist: artist._id.valueOf() })
+        if (!query.page) {
+            const albums = await this.albumModel.find({ artist: artist._id.valueOf() })
+            return albums
+        }
+        const albumsPerPage = 6
+        const currentPage = Number(query.page) || 1
+        const skipCount = albumsPerPage * (currentPage - 1)
+        const albums = await this.albumModel
+            .find({ artist: artist._id.valueOf() })
+            .limit(albumsPerPage).skip(skipCount)
         return albums
     }
 

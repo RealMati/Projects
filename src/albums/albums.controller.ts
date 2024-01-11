@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, HttpStatus, NotFoundException, Param, Patch, Post, Put, Req, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpStatus, NotFoundException, Param, Patch, Post, Put, Query, Req, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { AlbumsService } from './albums.service';
 import { Album } from './schemas/album.schema';
 import { Request, Response } from 'express'
+import { Query as EQuery } from 'express-serve-static-core'
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path/posix';
@@ -13,8 +14,8 @@ export class AlbumsController {
     ) { }
 
     @Get()
-    async getAllAlbums(@Req() req: Request): Promise<Album[]> {
-        return this.albumService.findAll(req)
+    async getAllAlbums(@Req() req: Request, @Query() query: EQuery): Promise<Album[]> {
+        return this.albumService.findAll(req, query)
     }
 
     @Get(':id')

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/artist-home.css">
+    <link rel="icon" href="../public/images/masinko-logo-purp.png">
+    <link rel="stylesheet" href="../public/css/bg.css">
+    <link rel="stylesheet" href="../public/css/public.css">
+    <link rel="icon" href="images/masinko-logo-purp.png">
+    <link rel="stylesheet" href="../public/css/bg.css">
+    <title>Masinqo | Album page</title>
+    <style>
+        #modalContainer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            /* Ensure it's above other content */
+        }
+
+        #modalBackground {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            /* Adjust opacity as needed */
+            z-index: -1;
+            /* Place it below the modal content */
+        }
+
+        * {
+            color: white;
+            font-family: Inter;
+            font-weight: 400;
+        }
+
+        #artistProfile>p {
+            text-shadow: 0px 0px 25px #61306D, 0px 0px 25px #61306D, 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        #albumName {
+            text-shadow: 0px 0px 20px rgba(117, 225, 218, 0.90);
+        }
+
+        .rowheaders {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+<body class="bg-black">
+    <header>
+        <nav class=" flex justify-between items-center">
+            <div class="flex items-center ">
+                <img src="../public/images/masinko-logo-white.png" alt="logo" class="w-[50px]">
+                <a href="#" class="text-white text-lg font-semibold hidden sm:block">Masinqo</a>
+            </div>
+
+            <ul class="flex space-x-4 pr-4">
+                <div class="flex items-center gap-1 md:gap-2">
+                    <svg width="38" height="37" viewBox="0 0 38 37" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5  hidden sm:block " onmouseover="this.style.fill='blue'"
+                        onmouseout="this.style.fill='white'">
+                        <path
+                            d="M35.9273 9.72673L21.9018 0.831814C21.0368 0.288798 20.0293 0 19 0C17.9707 0 16.9632 0.288798 16.0982 0.831814L2.07273 9.72673C1.45396 10.0857 0.939106 10.592 0.576531 11.1979C0.213957 11.8038 0.0155662 12.4895 0 13.1905V37H15.5455V27.6343H22.4545V37H38V13.1905C37.9844 12.4895 37.786 11.8038 37.4235 11.1979C37.0609 10.592 36.546 10.0857 35.9273 9.72673ZM34.5455 33.6371H25.9091V24.2714H12.0909V33.6371H3.45455V13.1905C3.46716 13.0534 3.51487 12.9215 3.59332 12.807C3.67177 12.6924 3.77846 12.5988 3.90364 12.5348L17.9291 3.63985C18.2365 3.45885 18.5889 3.36316 18.9482 3.36316C19.3074 3.36316 19.6599 3.45885 19.9673 3.63985L33.9927 12.5348C34.1179 12.5988 34.2246 12.6924 34.303 12.807C34.3815 12.9215 34.4292 13.0534 34.4418 13.1905L34.5455 33.6371Z"
+                            fill="white" />
+                    </svg>
+                    <li><a href="#" class="text-white hover:text-blue-200">Home</a></li>
+                </div>
+                <div class="flex items-center gap-1 md:gap-2">
+                    <svg width="51" height="52" viewBox="0 0 51 52" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="h-7 w-7  hidden sm:block addIcon">
+                        <g filter="url(#filter0_d_64_1374)">
+                            <path
+                                d="M25.5 46.7476C36.8218 46.7476 46 37.4021 46 25.8738C46 14.3455 36.8218 5 25.5 5C14.1782 5 5 14.3455 5 25.8738C5 37.4021 14.1782 46.7476 25.5 46.7476Z"
+                                stroke="#DD8BF1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M25.5 14.4878V37.2592" stroke="#DD8BF1" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M36.681 25.8735H14.3174" stroke="#DD8BF1" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </g>
+                        <defs>
+                            <filter id="filter0_d_64_1374" x="0" y="0" width="51" height="51.7476"
+                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                <feColorMatrix in="SourceAlpha" type="matrix"
+                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                <feOffset />
+                                <feGaussianBlur stdDeviation="2" />
+                                <feComposite in2="hardAlpha" operator="out" />
+                                <feColorMatrix type="matrix"
+                                    values="0 0 0 0 0.756863 0 0 0 0 0.560784 0 0 0 0 0.960784 0 0 0 1 0" />
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_64_1374" />
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_64_1374"
+                                    result="shape" />
+                            </filter>
+                        </defs>
+                    </svg>
+                    <li><a href="#" class="text-white hover:text-blue-200">Add Music</a></li>
+                </div>
+                <div class="flex items-center gap-1 md:gap-2">
+                    <svg width="42" height="39" viewBox="0 0 42 39" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5  hidden sm:block">
+                        <path
+                            d="M24.3327 37H5.22618C4.37088 36.9992 3.55087 36.6822 2.94606 36.1187C2.34124 35.5552 2.001 34.7912 2 33.9943V5.00575C2.001 4.20882 2.34124 3.44479 2.94606 2.8813C3.55087 2.3178 4.37088 2.00086 5.22618 2H24.3327C25.188 2.00088 26.0079 2.31785 26.6126 2.88135C27.2173 3.44486 27.5575 4.20888 27.5583 5.00575V13.3692C27.5583 13.5257 27.4916 13.6758 27.3728 13.7865C27.254 13.8972 27.0929 13.9593 26.9249 13.9593C26.757 13.9593 26.5959 13.8972 26.4771 13.7865C26.3583 13.6758 26.2916 13.5257 26.2916 13.3692V5.00575C26.291 4.52183 26.0845 4.05787 25.7172 3.71566C25.35 3.37344 24.8521 3.18091 24.3327 3.18029H5.22618C4.70672 3.18079 4.20868 3.37327 3.84134 3.7155C3.474 4.05772 3.26735 4.52174 3.26672 5.00575V33.9943C3.26735 34.4783 3.474 34.9423 3.84134 35.2845C4.20868 35.6267 4.70672 35.8192 5.22618 35.8197H24.3327C24.8521 35.8191 25.35 35.6266 25.7172 35.2843C26.0845 34.9422 26.291 34.4782 26.2916 33.9943V25.6198C26.2916 25.4633 26.3583 25.3133 26.4771 25.2026C26.5959 25.0919 26.757 25.0297 26.9249 25.0297C27.0929 25.0297 27.254 25.0919 27.3728 25.2026C27.4916 25.3133 27.5583 25.4633 27.5583 25.6198V33.9943C27.5575 34.7912 27.2173 35.5552 26.6126 36.1187C26.0079 36.6821 25.188 36.9991 24.3327 37ZM35.7159 19.4983C35.7159 19.4208 35.6996 19.344 35.6677 19.2724C35.6359 19.2008 35.5892 19.1358 35.5304 19.0809C35.4716 19.0261 35.4018 18.9827 35.3249 18.953C35.2481 18.9234 35.1657 18.9081 35.0825 18.9081H17.5334C17.3654 18.9081 17.2043 18.9703 17.0856 19.081C16.9668 19.1916 16.9 19.3418 16.9 19.4983C16.9 19.6548 16.9668 19.8049 17.0856 19.9156C17.2043 20.0262 17.3654 20.0884 17.5334 20.0884H35.0825C35.1657 20.0884 35.2481 20.0732 35.3249 20.0435C35.4018 20.0139 35.4716 19.9704 35.5304 19.9156C35.5892 19.8608 35.6359 19.7957 35.6677 19.7241C35.6996 19.6526 35.7159 19.5758 35.7159 19.4983ZM35.5303 24.9093L39.0565 21.6238C39.6606 21.0596 40 20.2953 40 19.4983C40 18.7014 39.6606 17.9369 39.0565 17.3729L35.5303 14.0873C35.4715 14.0325 35.4017 13.9891 35.3249 13.9594C35.248 13.9298 35.1657 13.9145 35.0825 13.9145C34.9994 13.9145 34.917 13.9298 34.8401 13.9594C34.7633 13.9891 34.6935 14.0325 34.6347 14.0873C34.5759 14.1421 34.5292 14.2072 34.4974 14.2788C34.4656 14.3503 34.4492 14.4271 34.4492 14.5046C34.4492 14.582 34.4656 14.6588 34.4974 14.7304C34.5292 14.802 34.5759 14.867 34.6347 14.9218L38.1609 18.2073C38.5278 18.55 38.7338 19.0143 38.7338 19.4983C38.7338 19.9823 38.5278 20.4466 38.1609 20.7892L34.6347 24.0748C34.5753 24.1294 34.5281 24.1945 34.4958 24.2663C34.4635 24.338 34.4467 24.415 34.4464 24.4928C34.4462 24.5706 34.4624 24.6477 34.4943 24.7196C34.5261 24.7915 34.5729 24.8569 34.6319 24.9119C34.691 24.9669 34.7611 25.0105 34.8383 25.0401C34.9155 25.0698 34.9982 25.085 35.0817 25.0847C35.1652 25.0845 35.2478 25.0688 35.3249 25.0387C35.4018 25.0086 35.4717 24.9647 35.5303 24.9093Z"
+                            fill="white" stroke="white" stroke-width="3" />
+                    </svg>
+                    <li><a href="#" class="text-white hover:text-blue-200">Log Out</a></li>
+                </div>
+
+            </ul>
+
+        </nav>
+    </header>
+    <main class="flex-col items-center">
+        <div id="artistProfile" class="container mx-auto mb-6 flex items-center gap-6">
+            <img src="../public/images/artistPlaceholder.png" alt="artist profile rounded"
+                class="text-white rounded-full shadow border-2 border-purple-400 h-28"
+                style="box-shadow: 0px 4px 25px 0px rgba(103, 215, 250, 0.25);">
+            <p class="text-white font-extralight font-['Inter'] text-5xl sm:text-6xl">Artist Name</p>
+        </div>
+        <div id="AlbumDetail" class="flex  items-center pl-4 sm:pl-20">
+            <div class="w-2/5 flex justify-end  pr-2 sm:pr-6">
+                <div class="relative">
+                    <img id="AlbumArt" src="../public/images/albumPlaceholder.png" alt="Album Art " class="w-80">
+                    <div
+                        class="flex items-center justify-start bg-zinc-800 bg-opacity-50 rounded-[32px] absolute left-0 bottom-1 pl-2 w-[99%]  gap-1">
+                        <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            class="w-8">
+                            <path
+                                d="M35.0004 67.0833C52.7195 67.0833 67.0837 52.719 67.0837 34.9999C67.0837 17.2807 52.7195 2.9165 35.0004 2.9165C17.2812 2.9165 2.91699 17.2807 2.91699 34.9999C2.91699 52.719 17.2812 67.0833 35.0004 67.0833Z"
+                                fill="url(#paint0_linear_70_1549)" />
+                            <path
+                                d="M50.1172 30.8733L30.4807 19.5361C28.9888 18.6748 27.2075 18.6748 25.7156 19.5361C24.2237 20.3975 23.333 21.9402 23.333 23.6628V46.3371C23.333 48.0598 24.2237 49.6024 25.7156 50.4637C26.4615 50.8944 27.2799 51.1097 28.0981 51.1097C28.9162 51.1097 29.7347 50.8944 30.4807 50.4637L50.1172 39.1266C51.6089 38.2652 52.4996 36.7226 52.4996 34.9998C52.4996 33.277 51.6089 31.7346 50.1172 30.8733Z"
+                                fill="url(#paint1_linear_70_1549)" />
+                            <defs>
+                                <linearGradient id="paint0_linear_70_1549" x1="-24.288" y1="20.9179" x2="73.3122"
+                                    y2="20.9179" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0.9999" stop-color="#A134D5" />
+                                    <stop offset="1" stop-color="#23ECC8" />
+                                </linearGradient>
+                                <linearGradient id="paint1_linear_70_1549" x1="21.1318" y1="23.8841" x2="43.3637"
+                                    y2="46.1158" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0.9999" />
+                                    <stop offset="1" stop-color="#EDF1F2" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <p style="font-weight: 900;">Play All</p>
+                        <svg width="63" height="51" viewBox="0 0 63 51" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            class="w-9">
+                            <path
+                                d="M7.875 20.7188C6.69375 20.7188 5.90625 21.3562 5.90625 22.3125V28.6875C5.90625 29.6438 6.69375 30.2812 7.875 30.2812C9.05625 30.2812 9.84375 29.6438 9.84375 28.6875V22.3125C9.84375 21.3562 9.05625 20.7188 7.875 20.7188Z"
+                                fill="#C976F0" />
+                            <path
+                                d="M15.75 17.5312C14.5687 17.5312 13.7812 18.1687 13.7812 19.125V31.875C13.7812 32.8313 14.5687 33.4688 15.75 33.4688C16.9313 33.4688 17.7188 32.8313 17.7188 31.875V19.125C17.7188 18.1687 16.9313 17.5312 15.75 17.5312Z"
+                                fill="#C976F0" />
+                            <path
+                                d="M23.625 9.5625C22.4437 9.5625 21.6562 10.2 21.6562 11.1562V39.8438C21.6562 40.8 22.4437 41.4375 23.625 41.4375C24.8063 41.4375 25.5938 40.8 25.5938 39.8438V11.1562C25.5938 10.2 24.8063 9.5625 23.625 9.5625Z"
+                                fill="#C976F0" />
+                            <path
+                                d="M31.5 20.7188C30.3187 20.7188 29.5312 21.3562 29.5312 22.3125V28.6875C29.5312 29.6438 30.3187 30.2812 31.5 30.2812C32.6813 30.2812 33.4688 29.6438 33.4688 28.6875V22.3125C33.4688 21.3562 32.6813 20.7188 31.5 20.7188Z"
+                                fill="#C976F0" />
+                            <path
+                                d="M39.375 14.3438C38.1937 14.3438 37.4062 14.9812 37.4062 15.9375V35.0625C37.4062 36.0187 38.1937 36.6562 39.375 36.6562C40.5563 36.6562 41.3438 36.0187 41.3438 35.0625V15.9375C41.3438 14.9812 40.5563 14.3438 39.375 14.3438Z"
+                                fill="#C976F0" />
+                            <path
+                                d="M47.25 9.5625C46.0687 9.5625 45.2812 10.2 45.2812 11.1562V39.8438C45.2812 40.8 46.0687 41.4375 47.25 41.4375C48.4313 41.4375 49.2188 40.8 49.2188 39.8438V11.1562C49.2188 10.2 48.4313 9.5625 47.25 9.5625Z"
+                                fill="#C976F0" />
+                            <path
+                                d="M55.125 20.7188C53.9437 20.7188 53.1562 21.3562 53.1562 22.3125V28.6875C53.1562 29.6438 53.9437 30.2812 55.125 30.2812C56.3063 30.2812 57.0938 29.6438 57.0938 28.6875V22.3125C57.0938 21.3562 56.3063 20.7188 55.125 20.7188Z"
+                                fill="#C976F0" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col w-3/6">
+                <p id="albumName" class="text-4xl">Album Name: string</p>
+                <p>Released Date: Date()</p>
+                <p>Tracks: int</p>
+                <p>Genre: string</p>
+                <p>Description: string</p>
+                <div class="flex justify-between mt-3 w-full sm:w-4/5 lg:w-3/5">
+                    <div
+                        class="bg-zinc-300 bg-opacity-0 rounded-[10px] border-2 border-teal-300 flex justify-between items-center gap-2 px-4 py-1 hover:bg-neutral-900 hover:border-indigo-400">
+                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5" id="editIcon">
+                            <path d="M23.6667 2L32 10.3333L10.3333 32H2V23.6667L23.6667 2Z" stroke="#75E1DA"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <p>Edit Album </p>
+                    </div>
+                    <div
+                        class="bg-zinc-300 bg-opacity-0 rounded-[10px] border-2 border-teal-300 flex justify-between items-center gap-2 px-4 py-1  hover:bg-neutral-900 hover:border-indigo-400">
+                        <svg width="51" height="52" viewBox="0 0 51 52" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            class="h-7 w-7 addIcon">
+                            <g filter="url(#filter0_d_64_1488)">
+                                <path
+                                    d="M25.5 46.7476C36.8218 46.7476 46 37.4021 46 25.8738C46 14.3455 36.8218 5 25.5 5C14.1782 5 5 14.3455 5 25.8738C5 37.4021 14.1782 46.7476 25.5 46.7476Z"
+                                    stroke="#DD8BF1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M25.5 14.4878V37.2592" stroke="#DD8BF1" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M36.681 25.8735H14.3174" stroke="#DD8BF1" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </g>
+                            <defs>
+                                <filter id="filter0_d_64_1488" x="0" y="0" width="51" height="51.7476"
+                                    filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                    <feColorMatrix in="SourceAlpha" type="matrix"
+                                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                    <feOffset />
+                                    <feGaussianBlur stdDeviation="2" />
+                                    <feComposite in2="hardAlpha" operator="out" />
+                                    <feColorMatrix type="matrix"
+                                        values="0 0 0 0 0.756863 0 0 0 0 0.560784 0 0 0 0 0.960784 0 0 0 1 0" />
+                                    <feBlend mode="normal" in2="BackgroundImageFix"
+                                        result="effect1_dropShadow_64_1488" />
+                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_64_1488"
+                                        result="shape" />
+                                </filter>
+                            </defs>
+                        </svg>
+                        <p>Add Song </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="my-5 container mx-auto px-8 flex flex-col">
+            <div class="flex justify-between px-5 my-2">
+                <p class="rowheaders">Track Name</p>
+                <p class="rowheaders">Release Date</p>
+            </div>
+            <div class="flex flex-col gap-5">
+                <div
+                    class=" rounded-[5px] border-2 border-white flex justify-between items-center py-1 px-5 hover:bg-neutral-900 hover:border-indigo-400">
+                    <div class="flex gap-4 items-center">
+                        <img src="../public/images/albumPlaceholder.png" alt="Album Art for the Track" class="h-10"
+                            style="border: 1px solid #797A7A;">
+                        <p class="text-lg">#No Track Names</p>
+
+                    </div>
+                    <p>Month, Date, Year</p>
+                </div>
+                <div
+                    class=" rounded-[5px] border-2 border-white flex justify-between items-center py-1 px-5 hover:bg-neutral-900 hover:border-indigo-400">
+                    <div class="flex gap-4 items-center">
+                        <img src="../public/images/albumPlaceholder.png" alt="Album Art for the Track" class="h-10"
+                            style="border: 1px solid #797A7A;">
+                        <p class="text-lg">#No Track Names</p>
+
+                    </div>
+                    <p>Month, Date, Year</p>
+                </div>
+                <div
+                    class=" rounded-[5px] border-2 border-white flex justify-between items-center py-1 px-5 hover:bg-neutral-900 hover:border-indigo-400">
+                    <div class="flex gap-4 items-center">
+                        <img src="../public/images/albumPlaceholder.png" alt="Album Art for the Track" class="h-10"
+                            style="border: 1px solid #797A7A;">
+                        <p class="text-lg">#No Track Names</p>
+
+                    </div>
+                    <p>Month, Date, Year</p>
+                </div>
+                <div
+                    class=" rounded-[5px] border-2 border-white flex justify-between items-center py-1 px-5 hover:bg-neutral-900 hover:border-indigo-400">
+                    <div class="flex gap-4 items-center">
+                        <img src="../public/images/albumPlaceholder.png" alt="Album Art for the Track" class="h-10"
+                            style="border: 1px solid #797A7A;">
+                        <p class="text-lg">#No Track Names</p>
+
+                    </div>
+                    <p>Month, Date, Year</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="bg-black bg-opacity-75 absolute h-screen w-screen hidden text-slate-50" id="modalContainer">
+        <div class="h-full w-full opacity-0 -z-10 " id="modalBackground"></div>
+        <div
+            class="bg-gray-950 w-9/12 max-w-md h-min absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center py-6 border border-fuchsia-600 rounded-lg">
+            <div class="flex items-center gap-3">
+                <img src="../public/images/pencil-purp.svg" alt="" class="w-10 h-10">
+                <p class="text-3xl">Add Music</p>
+            </div>
+            <form action="" class="flex flex-col gap-3 my-4 w-8/12 text-white">
+                <div class="flex flex-col">
+                    <label for="type" class="text-lg mb-1 text-white">Type</label>
+                    <select name="type" class="bg-fuchsia-950 py-2 px-2 outline-none rounded-md">
+                        <option value="LP">Long Play</option>
+                        <option value="EP">Extended Play</option>
+                        <option value="single">Single</option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label for="albumName" class="text-lg mb-1 text-white">Name</label>
+                    <input type="text" name="albumName" class="bg-slate-900 py-1 px-2 outline-none rounded-md">
+                </div>
+                <div class="flex flex-col">
+                    <label for="genre" class="text-lg mb-1">Genre</label>
+                    <input type="text" name="genre" class="bg-slate-900 py-1 px-2 outline-none rounded-md">
+                </div>
+                <div class="flex flex-col">
+                    <label for="description" class="text-lg mb-1">Description</label>
+                    <textarea name="description" rows="3"
+                        class="bg-slate-900 py-1 px-2 outline-none rounded-md"></textarea>
+                </div>
+                <div class="flex flex-col">
+                    <label for="cover" class="text-lg mb-1">Cover Image</label>
+                    <input type="file" name="cover" class="text-center">
+                </div>
+                <button
+                    class="bg-fuchsia-800 border-2 border-fuchsia-800 px-4 pb-2 pt-1 w-min mt-6 mx-auto rounded-3xl hover:bg-transparent hover:text-fuchsia-500 hover:transition-colors transition-colors"
+                    type="submit">
+                    Add
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+
+    <div class="bg-black bg-opacity-75 absolute h-screen w-screen hidden text-slate-50" id="modalContainer2">
+        <div class="h-full w-full opacity-0 -z-10 " id="modalBackground2"></div>
+        <div
+            class="bg-gray-950 w-9/12 max-w-lg h-min absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center py-8 border border-teal-500 rounded-lg">
+            <div class="flex items-center gap-3">
+                <img src="../public/images/pencil.svg" alt="" class="w-10 h-10">
+                <p class="text-3xl">Edit Album</p>
+            </div>
+            <form action="" class="flex flex-col gap-3 my-4 w-8/12 text-white">
+                <p class="italic text-center text-white font-semibold">*Leave unchanged fields empty.</p>
+                <div class="flex flex-col">
+                    <label for="albumName" class="text-lg mb-1 text-white">Album Name</label>
+                    <input type="text" name="albumName" class="bg-slate-900 py-1 px-2 outline-none rounded-md">
+                </div>
+                <div class="flex flex-col">
+                    <label for="genre" class="text-lg mb-1">Genre</label>
+                    <input type="text" name="genre" class="bg-slate-900 py-1 px-2 outline-none rounded-md">
+                </div>
+                <div class="flex flex-col">
+                    <label for="description" class="text-lg mb-1">Description</label>
+                    <textarea name="description" rows="3"
+                        class="bg-slate-900 py-1 px-2 outline-none rounded-md"></textarea>
+                </div>
+                <div class="flex flex-col">
+                    <label for="cover" class="text-lg mb-1">Cover Image</label>
+                    <input type="file" name="cover" class="text-center">
+                </div>
+            </form>
+            <div class="flex flex-col items-center w-6/12">
+                <h2 class="mt-2 text-2xl mb-2">Tracks</h2>
+                <div class="w-full">
+                    <div class="flex justify-between items-center border-t-2 border-teal-500 py-1">
+                        <p class="font-semibold">Track Name</p>
+                        <img src="../public/images/delete-icon.svg" alt="" class="w-5 h-5">
+                    </div>
+                    <div class="flex justify-between items-center border-t-2 border-teal-500 py-1">
+                        <p class="font-semibold">Track Name</p>
+                        <img src="../public/images/delete-icon.svg" alt="" class="w-5 h-5">
+                    </div>
+                    <div class="flex justify-between items-center border-t-2 border-teal-500 py-1">
+                        <p class="font-semibold">Track Name</p>
+                        <img src="../public/images/delete-icon.svg" alt="" class="w-5 h-5">
+                    </div>
+                    <div class="flex justify-between items-center border-t-2 border-teal-500 py-1">
+                        <p class="font-semibold">Track Name</p>
+                        <img src="../public/images/delete-icon.svg" alt="" class="w-5 h-5">
+                    </div>
+                    <div class="flex justify-between items-center border-t-2 border-teal-500 py-1">
+                        <p class="font-semibold">Track Name</p>
+                        <img src="../public/images/delete-icon.svg" alt="" class="w-5 h-5">
+                    </div>
+                    <div class="flex justify-between items-center border-t-2 border-teal-500 py-1">
+                        <p class="font-semibold">Track Name</p>
+                        <img src="../public/images/delete-icon.svg" alt="" class="w-5 h-5">
+                    </div>
+                </div>
+            </div>
+            <button
+                class="bg-teal-500 border-2 border-teal-500 px-4 py-2 w-min mt-6 mx-auto rounded-3xl hover:bg-transparent hover:text-teal-500"
+                type="submit">
+                Save
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const modalContainer = document.getElementById('modalContainer');
+        const modalBackground = document.getElementById('modalBackground');
+
+        const addIcons = document.querySelectorAll('.addIcon');
+        addIcons.forEach(addIcon => {
+            addIcon.addEventListener('click', function () {
+
+                modalContainer.style.display = 'block';
+
+            });
+        });
+
+        modalBackground.addEventListener('click', function (event) {
+            if (event.target === modalBackground) {
+                modalContainer.style.display = 'none';
+            }
+        });
+
+
+        const modalContainer2 = document.getElementById('modalContainer2');
+        const modalBackground2 = document.getElementById('modalBackground2');
+        const editIcon = document.getElementById('editIcon');
+
+        editIcon.addEventListener('click', function () {
+            modalContainer2.style.display = 'block';
+        });
+
+        modalBackground2.addEventListener('click', function (event) {
+            if (event.target === modalBackground2) {
+                modalContainer2.style.display = 'none';
+            }
+        });
+
+
+    </script>
+
+
+</body>
+
+</html>
