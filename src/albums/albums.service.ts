@@ -30,9 +30,10 @@ export class AlbumsService {
             }
             const token = req.cookies.accessToken
             const decoded = await jwt.verify(token, process.env.JWT_ACCESS_KEY)
-
             const idStr = (decoded as any).id
+            const role = Number((decoded as any).role)
             const artist = await this.artistModel.findById(idStr)
+            if (role !== 1) throw new UnauthorizedException('Logged in as an Admin, not as an Artist')
             if (!artist) {
                 throw new UnauthorizedException('User not found.')
             }
@@ -48,10 +49,10 @@ export class AlbumsService {
         if (!artist) {
             throw new BadRequestException('Cookie not found')
         }
-        if (!query.page) {
-            const albums = await this.albumModel.find({ artist: artist._id.valueOf() })
-            return albums
-        }
+        // if (!query.page) {
+        //     const albums = await this.albumModel.find({ artist: artist._id.valueOf() })
+        //     return albums
+        // }
         const albumsPerPage = 6
         const currentPage = Number(query.page) || 1
         const skipCount = albumsPerPage * (currentPage - 1)

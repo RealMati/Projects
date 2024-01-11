@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { ArtistsModule } from './artists/artists.module';
 
 @Module({
   imports: [
@@ -16,7 +17,8 @@ import { join } from 'path';
       envFilePath: '.env',
       isGlobal: true
     }),
-    MongooseModule.forRoot(process.env.DB_CONNECTION_STRING)
+    MongooseModule.forRoot(process.env.DB_CONNECTION_STRING),
+    ArtistsModule
   ],
   controllers: [AppController],
   providers: [AppService],

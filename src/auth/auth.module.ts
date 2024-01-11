@@ -7,6 +7,7 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { JWTStrategy } from './jwt-strategy';
+import { AdminSchema } from './schema/admin.schema';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { JWTStrategy } from './jwt-strategy';
         }
       }
     }),
-    MongooseModule.forFeature([{ name: 'Artist', schema: ArtistSchema }])
+    MongooseModule.forFeature([{ name: 'Artist', schema: ArtistSchema }, { name: 'Admin', schema: AdminSchema }])
   ],
   controllers: [AuthController],
   providers: [AuthService, JWTStrategy],
