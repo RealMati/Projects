@@ -8,6 +8,5 @@ export class AppService {
     } else {
       return { url: '/auth/login' }
     }
-
   }
 }
