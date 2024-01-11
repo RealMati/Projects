@@ -5,7 +5,7 @@ import * as mongoose from 'mongoose';
 import { Artist } from 'src/auth/schema/artist.schema';
 import * as jwt from 'jsonwebtoken'
 import { ObjectId } from 'mongoose';
-import { Request } from 'express'
+import { Request, Response } from 'express'
 import { Song } from './schemas/song';
 import { existsSync, unlinkSync } from 'fs';
 import { extname, join } from 'path';
@@ -23,9 +23,10 @@ export class AlbumsService {
 
     // reads access token from the request object
     // decodes the payload in the token and returns the artist identified by the id field of the payload
-    async parseToken(req: Request) {
+    async parseToken(req: Request, res: Response) {
         try {
             if (!req.cookies?.accessToken) {
+                res.redirect('/auth/login')
                 throw new BadRequestException('Cookie not found')
             }
             const token = req.cookies.accessToken
@@ -43,8 +44,8 @@ export class AlbumsService {
     }
 
     // GET to /albums
-    async findAll(req: Request, query: EQuery): Promise<Album[]> {
-        const artist: any = await this.parseToken(req)
+    async findAll(req: Request, res: Response, query: EQuery): Promise<Album[]> {
+        const artist: any = await this.parseToken(req, res)
         if (!artist) {
             throw new BadRequestException('Cookie not found')
         }
@@ -74,12 +75,12 @@ export class AlbumsService {
     }
 
     // POST to /albums
-    async createAlbum(req: Request, file: Express.Multer.File): Promise<Album> {
+    async createAlbum(req: Request, res: Response, file: Express.Multer.File): Promise<Album> {
         const album = req.body
         if (!album) {
             throw new BadRequestException('Empty data set')
         }
-        const artist: any = await this.parseToken(req)
+        const artist: any = await this.parseToken(req, res)
         const data = { ...album, artist: artist.id.valueOf() }
         const newAlbum = await this.albumModel.create(data)
         const id: string = newAlbum._id.toString()
@@ -111,12 +112,12 @@ export class AlbumsService {
     }
 
     // PUT to /albums/:id
-    async updateById(id: string, req: Request): Promise<Album> {
+    async updateById(id: string, req: Request, res: Response): Promise<Album> {
         const updates = req.body
         if (!updates) {
             throw new BadRequestException('Empty data set')
         }
-        const artistFromToken: any = await this.parseToken(req)
+        const artistFromToken: any = await this.parseToken(req, res)
         const album = await this.albumModel.findById(id)
         if (artistFromToken._id.valueOf() !== album.artist) {
             throw new UnauthorizedException('Only creators of an album can edit it.')
@@ -125,8 +126,8 @@ export class AlbumsService {
     }
 
     // DELETE to /albums/:id
-    async deleteById(id: string, req: Request) {
-        const artistFromToken: any = await this.parseToken(req)
+    async deleteById(id: string, req: Request, res: Response) {
+        const artistFromToken: any = await this.parseToken(req, res)
         const artistFromAlbum = await this.albumModel.findById(id)
         if (artistFromToken._id.valueOf() !== artistFromAlbum.artist) {
             throw new UnauthorizedException('Only creators of an album can edit it.')
@@ -156,12 +157,12 @@ export class AlbumsService {
 
     // SONGS
     // POST to /albums/songs/:id
-    async addSong(id: string, req: Request, file: Express.Multer.File) {
+    async addSong(id: string, req: Request, res: Response, file: Express.Multer.File) {
         const song: { name } = req.body
         if (!song) {
             throw new BadRequestException('Empty data set')
         }
-        const artistFromToken: any = await this.parseToken(req)
+        const artistFromToken: any = await this.parseToken(req, res)
         const album = await this.albumModel.findById(id)
         if (artistFromToken._id.valueOf() !== album.artist) {
             throw new UnauthorizedException('Only creators of an album can add songs')
@@ -219,13 +220,13 @@ export class AlbumsService {
     }
 
     // DELETE to /albums/songs/:id
-    async removeSong(id: string, req: Request) {
+    async removeSong(id: string, req: Request, res: Response) {
         const song: { name: string } = req.body
         const songName = song.name
         if (!song) {
             throw new BadRequestException('Empty data set')
         }
-        const artistFromToken: any = await this.parseToken(req)
+        const artistFromToken: any = await this.parseToken(req, res)
         const album = await this.albumModel.findById(id)
         if (artistFromToken._id.valueOf() !== album.artist) {
             throw new UnauthorizedException('Only creators of an album can remove songs')
