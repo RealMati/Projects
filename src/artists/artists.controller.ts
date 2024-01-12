@@ -18,6 +18,8 @@ export class ArtistsController {
         return this.artistService.getArtists(req)
     }
 
+    
+
     @Put(':id')
     async updateArtist(@Param('id') id: string, @Req() req: Request) {
         return this.artistService.updateArtist(id, req)
