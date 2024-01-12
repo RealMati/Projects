@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             console.error("Either 'cover' is null or undefined, or it doesn't have files.");
         }
-        
+
 
         try {
             const response = await fetch('/auth/add-music', {
@@ -41,43 +41,54 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function validateForm(): boolean {
-    const nameInput: HTMLInputElement | null = document.getElementById('name') as HTMLInputElement;
-    const emailInput: HTMLInputElement | null = document.getElementById('email') as HTMLInputElement;
-    const nameError: HTMLElement | null = document.getElementById('nameError');
-    const emailError: HTMLElement | null = document.getElementById('emailError');
+    const typeInput = document.getElementById('type') as HTMLSelectElement;
+    const albumNameInput = document.getElementById('albumName') as HTMLInputElement;
+    const genreInput = document.getElementById('genre') as HTMLInputElement;
+    const descriptionInput = document.getElementById('description') as HTMLTextAreaElement;
+    const coverInput = document.getElementById('cover') as HTMLInputElement;
 
-    if (!nameInput || !emailInput || !nameError || !emailError) {
-        console.error('All elements are required!');
-        return false;
+    const typeMessage = document.getElementById('typeMessage') as HTMLDivElement;
+    const albumNameMessage = document.getElementById('albumNameMessage') as HTMLDivElement;
+    const genreMessage = document.getElementById('genreMessage') as HTMLDivElement;
+    const descriptionMessage = document.getElementById('descriptionMessage') as HTMLDivElement;
+    const coverMessage = document.getElementById('coverMessage') as HTMLDivElement;
+
+    let isValid = true;
+
+    if (typeInput.value === '') {
+        typeMessage.innerText = 'Type is required.';
+        isValid = false;
+    } else {
+        typeMessage.innerText = '';
     }
 
-    const name: string = nameInput.value.trim();
-    const email: string = emailInput.value.trim();
-
-    nameError.style.display = 'none';
-    emailError.style.display = 'none';
-
-    if (name === '') {
-        nameError.textContent = 'Please enter a name.';
-        nameError.style.display = 'block';
-        return false; 
+    if (albumNameInput.value === '') {
+        albumNameMessage.innerText = 'Name is required.';
+        isValid = false;
+    } else {
+        albumNameMessage.innerText = '';
     }
 
-    if (email === '') {
-        emailError.textContent = 'Please enter an email address.';
-        emailError.style.display = 'block';
-        return false; 
-    } else if (!isValidEmail(email)) {
-        emailError.textContent = 'Please enter a valid email address.';
-        emailError.style.display = 'block';
-        return false; 
+    if (genreInput.value === '') {
+        genreMessage.innerText = 'Genre is required.';
+        isValid = false;
+    } else {
+        genreMessage.innerText = '';
     }
 
+    if (descriptionInput.value === '') {
+        descriptionMessage.innerText = 'Description is required.';
+        isValid = false;
+    } else {
+        descriptionMessage.innerText = '';
+    }
 
-    return true; 
-}
+    if (coverInput.files && coverInput.files.length === 0) {
+        coverMessage.innerText = 'Cover image is required.';
+        isValid = false;
+    } else {
+        coverMessage.innerText = '';
+    }
 
-function isValidEmail(email: string): boolean {
-    const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    return isValid;
 }
