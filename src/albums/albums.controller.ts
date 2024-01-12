@@ -6,6 +6,7 @@ import { Query as EQuery } from 'express-serve-static-core'
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path/posix';
+import { ArtistsService } from 'src/artists/artists.service';
 
 @Controller('albums')
 export class AlbumsController {
@@ -27,7 +28,9 @@ export class AlbumsController {
 
     @Get('/info/:id')
     @Render('album-page')
-    getAlbumPage() { }
+    async getAlbumPage(@Param('id') id: string) {
+        return this.albumService.getAlbumInfo(id)
+    }
 
     @Get(':id')
     @Render('album-page')
@@ -89,6 +92,11 @@ export class AlbumsController {
     }
 
     // routes for songs
+    @Get('songs/:id')
+    async findAlbumSongs(@Param('id') id: string) {
+        return this.albumService.findAlbumSongs(id)
+    }
+
     @Post('songs/:id')
     @UseInterceptors(FileInterceptor('song', {
         storage: diskStorage({
@@ -117,7 +125,4 @@ export class AlbumsController {
     async removeSong(@Param('id') id: string, @Req() req: Request) {
         return await this.albumService.removeSong(id, req)
     }
-
-
-
 }

@@ -74,6 +74,25 @@ export class AlbumsService {
         return album
     }
 
+    async getAlbumInfo(id: string) {
+        const album = await this.albumModel.findById(id)
+        if (!album) {
+            throw new BadRequestException('Album not found')
+        }
+        const artist = await this.artistModel.findById(album.artist)
+        if (!artist) {
+            throw new BadRequestException('Album not found')
+        }
+        const date = new Date(album.date)
+        return {
+            artistName: artist.name,
+            albumDate: date.toLocaleString('default', { month: "long" }) + " " + date.getUTCDate() + ", " + date.getUTCFullYear(),
+            trackNumber: album.songs.length,
+            genre: album.genre,
+            description: album.description
+        }
+    }
+
     // POST to /albums
     async createAlbum(req: Request, file: Express.Multer.File): Promise<Album> {
         const album = req.body
@@ -201,6 +220,17 @@ export class AlbumsService {
         }));
     }
 
+    async findAlbumSongs(id: string) {
+        if (!mongoose.isValidObjectId(id)) {
+            throw new BadRequestException('Please enter a valid ID')
+        }
+        const album = await this.albumModel.findById(id)
+        if (!album) {
+            throw new NotFoundException('Album not found')
+        }
+        return album.songs
+    }
+
     async getAlbumArtPath(id: string): Promise<string | undefined> {
         try {
             const album = await this.albumModel.findById(id);
@@ -305,7 +335,4 @@ export class AlbumsService {
         await document.save();
         return document;
     }
-
-
-
 }
