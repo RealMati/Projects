@@ -5,8 +5,6 @@
         const urlParts: string[] = window.location.pathname.split('/');
         const albumId: string = urlParts[urlParts.length - 1];
         const nameField = document.getElementById('songNameEl') as HTMLInputElement
-        const file = document.getElementById('fileEl')
-
 
         const formData = new FormData(document.querySelector('form') as HTMLFormElement);
         if (!nameField.value) {
@@ -42,6 +40,7 @@
         const result = await response.json();
         console.log('Song added successfully:', result);
         alert('Song Added Successfully');
+        location.reload()
 
     } catch (error) {
         console.error('Error:', error.message);

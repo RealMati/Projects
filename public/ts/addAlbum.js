@@ -36,13 +36,33 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 document.getElementById('add').addEventListener('click', function (event) { return __awaiter(_this, void 0, void 0, function () {
-    var formData, response, errorMessage, error_1, result, error_2;
+    var formData, albumNameField, albumGenreField, fileName, arr, response, errorMessage, error_1, result, error_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 8, , 9]);
                 event.preventDefault();
                 formData = new FormData(document.querySelector('form'));
+                albumNameField = document.getElementById('albumNameEl');
+                albumGenreField = document.getElementById('albumGenreEl');
+                if (!albumNameField.value) {
+                    alert('Name can not be empty');
+                    return [2 /*return*/];
+                }
+                if (!albumGenreField.value) {
+                    alert('Genre field can not be empty');
+                    return [2 /*return*/];
+                }
+                fileName = formData.get('albumArt').name;
+                if (!fileName) {
+                    alert('Please enter a file');
+                    return [2 /*return*/];
+                }
+                arr = fileName.split('.');
+                if (arr[arr.length - 1] !== 'png' && arr[arr.length - 1] !== 'jpeg' && arr[arr.length - 1] !== 'jpg') {
+                    alert('Only .png, .jpeg and .jpg files are acceptable');
+                    return [2 /*return*/];
+                }
                 return [4 /*yield*/, fetch('http://localhost:3000/albums', {
                         method: 'POST',
                         body: formData,
@@ -71,6 +91,7 @@ document.getElementById('add').addEventListener('click', function (event) { retu
                 result = _a.sent();
                 console.log('Album added successfully:', result);
                 alert('Album Added Successfully');
+                location.reload();
                 return [3 /*break*/, 9];
             case 8:
                 error_2 = _a.sent();

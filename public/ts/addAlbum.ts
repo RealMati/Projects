@@ -3,6 +3,28 @@
         event.preventDefault();
 
         const formData = new FormData(document.querySelector('form') as HTMLFormElement);
+        const albumNameField = document.getElementById('albumNameEl') as HTMLInputElement
+        const albumGenreField = document.getElementById('albumGenreEl') as HTMLInputElement
+
+        if (!albumNameField.value) {
+            alert('Name can not be empty')
+            return
+        }
+        if (!albumGenreField.value) {
+            alert('Genre field can not be empty')
+            return
+        }
+
+        const fileName = (formData.get('albumArt') as any).name
+        if (!fileName) {
+            alert('Please enter a file')
+            return
+        }
+        const arr = fileName.split('.')
+        if (arr[arr.length - 1] !== 'png' && arr[arr.length - 1] !== 'jpeg' && arr[arr.length - 1] !== 'jpg') {
+            alert('Only .png, .jpeg and .jpg files are acceptable')
+            return
+        }
 
         const response = await fetch('http://localhost:3000/albums', {
             method: 'POST',
@@ -26,6 +48,7 @@
         const result = await response.json();
         console.log('Album added successfully:', result);
         alert('Album Added Successfully');
+        location.reload()
 
     } catch (error) {
         console.error('Error:', (error as Error).message);
