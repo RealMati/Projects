@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="flex flex-col md:w-3/6 text-center md:text-left mt-2 md:pl-3">
-                <p id="albumName" class="text-4xl"></p>
+                <p id="albumName" class="text-4xl">{{albumTitle}}</p>
                 <p>Released on <span id="albumDate">{{albumDate}}</span></p>
                 <p>Number of Tracks: <span id="trackNumber">{{trackNumber}}</span></p>
                 <p>Genre: <span id="genre"></span>{{genre}}</p>
@@ -125,38 +125,26 @@
                 <img src="/images/pencil.svg" alt="" class="w-10 h-10">
                 <p class="text-3xl">Edit Album</p>
             </div>
-            <form action="" class="flex flex-col gap-3 my-4 w-8/12 text-white" id="addSongForm">
+            <form action="" class="flex flex-col gap-3 my-4 w-8/12 text-white" enctype="multipart/form-data"
+                id="editAlbumForm">
                 <p class="italic text-center text-white font-semibold">*Leave unchanged fields empty.</p>
                 <div class="flex flex-col">
                     <label for="albumName" class="text-lg mb-1 text-white">Album Name</label>
-                    <input required type="text" name="albumName" class="bg-slate-900 py-1 px-2 outline-none rounded-md">
+                    <input type="text" name="title" class="bg-slate-900 py-1 px-2 outline-none rounded-md">
                 </div>
                 <div class="flex flex-col">
                     <label for="genre" class="text-lg mb-1">Genre</label>
-                    <input required type="text" name="genre" class="bg-slate-900 py-1 px-2 outline-none rounded-md">
+                    <input type="text" name="genre" class="bg-slate-900 py-1 px-2 outline-none rounded-md">
                 </div>
                 <div class="flex flex-col">
                     <label for="description" class="text-lg mb-1">Description</label>
                     <textarea name="description" rows="3"
                         class="bg-slate-900 py-1 px-2 outline-none rounded-md"> </textarea>
                 </div>
-                <div class="flex flex-col">
-                    <label for="cover" class="text-lg mb-1">Cover Image</label>
-                    <input type="file" name="cover" class="text-center">
-                </div>
             </form>
-            <div class="flex flex-col items-center w-6/12">
-                <h2 class="mt-2 text-2xl mb-2">Tracks</h2>
-                <div class="w-full h-36 overflow-y-scroll">
-                    <div class="flex justify-between items-center border-t-2 border-teal-500 py-1 px-4">
-                        <p class="font-semibold overflow-hidden whitespace-nowrap">Track One</p>
-                        <img src="/images/delete-icon.svg" alt="" class="w-5 h-5">
-                    </div>
-                </div>
-            </div>
             <button
                 class="bg-teal-500 border-2 border-teal-500 px-4 py-2 w-min mt-6 mx-auto rounded-3xl hover:bg-transparent hover:text-teal-500"
-                type="submit">
+                id="saveButton" type="submit">
                 Save
             </button>
         </div>
@@ -166,6 +154,7 @@
     <script src="/ts/albumPageModal.js"></script>
     <script src="/ts/albumPage.js"></script>
     <script src="/ts/addSong.js"></script>
+    <script src="/ts/editAlbum.js"></script>
 
 </body>
 

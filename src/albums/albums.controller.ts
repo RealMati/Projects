@@ -37,7 +37,6 @@ export class AlbumsController {
     }
 
     @Get(':id')
-    @Render('album-page')
     async findAlbumById(@Param('id') id: string): Promise<Album> {
         return this.albumService.findById(id)
     }
@@ -87,6 +86,7 @@ export class AlbumsController {
 
     @Put(':id')
     async updateAlbum(@Param('id') id: string, @Req() req: Request) {
+        console.log(req.body)
         return await this.albumService.updateById(id, req)
     }
 

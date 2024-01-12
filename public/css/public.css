@@ -649,10 +649,6 @@ video {
   margin-bottom: 0.25rem;
 }
 
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
-
 .mb-3 {
   margin-bottom: 0.75rem;
 }
@@ -723,10 +719,6 @@ video {
 
 .h-28 {
   height: 7rem;
-}
-
-.h-36 {
-  height: 9rem;
 }
 
 .h-5 {
@@ -800,10 +792,6 @@ video {
 
 .w-6 {
   width: 1.5rem;
-}
-
-.w-6\/12 {
-  width: 50%;
 }
 
 .w-7 {
@@ -931,10 +919,6 @@ video {
   overflow-y: scroll;
 }
 
-.whitespace-nowrap {
-  white-space: nowrap;
-}
-
 .rounded {
   border-radius: 0.25rem;
 }
@@ -986,10 +970,6 @@ video {
 
 .border-b {
   border-bottom-width: 1px;
-}
-
-.border-t-2 {
-  border-top-width: 2px;
 }
 
 .border-fuchsia-600 {

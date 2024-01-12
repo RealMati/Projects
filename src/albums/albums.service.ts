@@ -115,7 +115,8 @@ export class AlbumsService {
             trackNumber: album.songs.length,
             genre: album.genre,
             description: album.description,
-            albumArt: path
+            albumArt: path,
+            albumTitle: album.title
         }
     }
 
