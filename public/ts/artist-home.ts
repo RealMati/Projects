@@ -21,8 +21,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     let str = ""
     albums.forEach(album => {
         // audio file path
-        const arr = album.albumArtPath.split('\\')
-        const path = "/" + arr[1] + "/" + arr[2]
+        let path = '/images/albumPlaceholder.png'
+        if (album.albumArtPath) {
+            const arr = album.albumArtPath.split('\\')
+            path = "/" + arr[1] + "/" + arr[2]
+        }
         console.log(path)
         str += `<div class="album" data-album-id="${album._id}"><img src="${path}" alt="${album.title}"/><h2>${album.title}</h2><p>Genre: ${album.genre}</p><p>Description: ${album.description}</p><p type="date">Date: ${new Date(album.date).toLocaleDateString()}</p></div>`;
     })

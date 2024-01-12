@@ -59,8 +59,11 @@ document.addEventListener('DOMContentLoaded', function () { return __awaiter(_th
                 str = "";
                 albums.forEach(function (album) {
                     // audio file path
-                    var arr = album.albumArtPath.split('\\');
-                    var path = "/" + arr[1] + "/" + arr[2];
+                    var path = '/images/albumPlaceholder.png';
+                    if (album.albumArtPath) {
+                        var arr = album.albumArtPath.split('\\');
+                        path = "/" + arr[1] + "/" + arr[2];
+                    }
                     console.log(path);
                     str += "<div class=\"album\" data-album-id=\"".concat(album._id, "\"><img src=\"").concat(path, "\" alt=\"").concat(album.title, "\"/><h2>").concat(album.title, "</h2><p>Genre: ").concat(album.genre, "</p><p>Description: ").concat(album.description, "</p><p type=\"date\">Date: ").concat(new Date(album.date).toLocaleDateString(), "</p></div>");
                 });
