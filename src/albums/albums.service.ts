@@ -197,36 +197,27 @@ export class AlbumsService {
             description: album.description,
             date: album.date,
             albumArtPath: album.albumArtPath,
-           
+
         }));
     }
 
-
-
-      private getAlbumArtPath(albumArtPath: string): string {
-        // Replace this with your logic to convert the relative path to an absolute path.
-        // For example, if your images are stored in a directory named 'public', you might prepend it.
-        return \`${albumArtPath}`;
-      }
-
-
-      async getAlbumArtPath(id: string): Promise<string | undefined> {
+    async getAlbumArtPath(id: string): Promise<string | undefined> {
         try {
-          const album = await this.albumModel.findById(id);
-          if (!album) {
-            return undefined; // Album not found
-          }
-    
-          const albumArtPath = album.albumArtPath;
-          if (!albumArtPath) {
-            return undefined; // Album art path not available
-          }
-    
-          return albumArtPath;
+            const album = await this.albumModel.findById(id);
+            if (!album) {
+                return undefined; // Album not found
+            }
+
+            const albumArtPath = album.albumArtPath;
+            if (!albumArtPath) {
+                return undefined; // Album art path not available
+            }
+
+            return albumArtPath;
         } catch (error) {
-          throw new InternalServerErrorException(error.message);
+            throw new InternalServerErrorException(error.message);
         }
-      }
+    }
 
     // helper function for addSong - uploads the audio to the FS and stores the path in the song object
     async uploadSong(id: string, file: Express.Multer.File, songIndex) {

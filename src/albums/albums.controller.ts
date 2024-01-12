@@ -22,9 +22,12 @@ export class AlbumsController {
     @Render('artist-home')
     async getPage() {
         const albumsData = await this.albumService.getAllAlbums(); // Fetch albums data from the service
-
         return { albums: albumsData }; // Pass albums data to the view
     }
+
+    @Get('/info/:id')
+    @Render('album-page')
+    getAlbumPage() { }
 
     @Get(':id')
     @Render('album-page')
@@ -34,21 +37,21 @@ export class AlbumsController {
 
     @Get('images/:id')
     async getAlbumArt(@Param('id') id: string, @Res() res: Response): Promise<void> {
-      try {
-        const result = await this.albumService.getAlbumArtPath(id); // Update to use albumService
-        if (!result) {
-          res.status(404).send('Album not found');
-          return;
+        try {
+            const result = await this.albumService.getAlbumArtPath(id); // Update to use albumService
+            if (!result) {
+                res.status(404).send('Album not found');
+                return;
+            }
+
+            // Set appropriate content type based on your image type
+            res.contentType('image/jpeg'); // Update with your image type
+
+            // Send the image file
+            res.sendFile(result);
+        } catch (error) {
+            res.status(500).send('Internal Server Error');
         }
-  
-        // Set appropriate content type based on your image type
-        res.contentType('image/jpeg'); // Update with your image type
-  
-        // Send the image file
-        res.sendFile(result);
-      } catch (error) {
-        res.status(500).send('Internal Server Error');
-      }
     }
 
     @Post()
