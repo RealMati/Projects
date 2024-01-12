@@ -47,9 +47,16 @@ formElSU.addEventListener('submit', function (event) { return __awaiter(_this, v
         switch (_a.label) {
             case 0:
                 event.preventDefault();
-                if (!passwordFieldSU || !passwordFieldSU2 || passwordFieldSU.value.length < 6 || passwordFieldSU.value !== passwordFieldSU2.value || !emailRegex.test(emailFieldSU.value)) {
-                    // add UI indicator
-                    console.log('error');
+                if (!passwordFieldSU.value || !passwordFieldSU2.value || passwordFieldSU.value.trim().length < 6) {
+                    alert('Password length must be atleast 6');
+                    return [2 /*return*/];
+                }
+                if (passwordFieldSU.value !== passwordFieldSU2.value) {
+                    alert('Passwords do not match');
+                    return [2 /*return*/];
+                }
+                if (!emailRegex.test(emailFieldSU.value)) {
+                    alert('Please enter a valid email');
                     return [2 /*return*/];
                 }
                 body = {
@@ -66,7 +73,7 @@ formElSU.addEventListener('submit', function (event) { return __awaiter(_this, v
                     })];
             case 1:
                 response = _a.sent();
-                if (!(response.status === 201)) return [3 /*break*/, 3];
+                if (!response.ok) return [3 /*break*/, 3];
                 return [4 /*yield*/, fetch('/auth/login', {
                         method: 'POST',
                         headers: {
@@ -79,6 +86,7 @@ formElSU.addEventListener('submit', function (event) { return __awaiter(_this, v
                     })];
             case 2:
                 response_1 = _a.sent();
+                window.location.replace('/albums/manage');
                 _a.label = 3;
             case 3: return [2 /*return*/];
         }

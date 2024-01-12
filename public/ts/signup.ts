@@ -7,9 +7,16 @@ const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
 
 formElSU.addEventListener('submit', async (event: Event) => {
     event.preventDefault()
-    if (!passwordFieldSU || !passwordFieldSU2 || passwordFieldSU.value.length < 6 || passwordFieldSU.value !== passwordFieldSU2.value || !emailRegex.test(emailFieldSU.value)) {
-        // add UI indicator
-        console.log('error')
+    if (!passwordFieldSU.value || !passwordFieldSU2.value || passwordFieldSU.value.trim().length < 6) {
+        alert('Password length must be atleast 6')
+        return
+    }
+    if (passwordFieldSU.value !== passwordFieldSU2.value) {
+        alert('Passwords do not match')
+        return
+    }
+    if (!emailRegex.test(emailFieldSU.value)) {
+        alert('Please enter a valid email')
         return
     }
     const body = {
@@ -25,7 +32,7 @@ formElSU.addEventListener('submit', async (event: Event) => {
         body: JSON.stringify(body)
     })
 
-    if (response.status === 201) {
+    if (response.ok) {
         // redirect to site
         const response: any = await fetch('/auth/login', {
             method: 'POST',
@@ -37,5 +44,6 @@ formElSU.addEventListener('submit', async (event: Event) => {
                 password: passwordFieldSU.value
             })
         })
+        window.location.replace('/albums/manage')
     }
 })

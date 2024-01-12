@@ -46,9 +46,16 @@ formElSUA.addEventListener('submit', function (event) { return __awaiter(_this, 
         switch (_a.label) {
             case 0:
                 event.preventDefault();
-                if (!passwordFieldSUA || !passwordFieldSU2A || passwordFieldSUA.value.length < 6 || passwordFieldSUA.value !== passwordFieldSU2A.value || !emailRegexA.test(emailFieldSUA.value)) {
-                    // add UI indicator
-                    alert('Input Email or Password is invalid');
+                if (!passwordFieldSUA.value || !passwordFieldSU2A.value || passwordFieldSUA.value.trim().length < 6) {
+                    alert('Password length must be atleast 6');
+                    return [2 /*return*/];
+                }
+                if (passwordFieldSUA.value !== passwordFieldSU2A.value) {
+                    alert('Passwords do not match');
+                    return [2 /*return*/];
+                }
+                if (!emailRegexA.test(emailFieldSUA.value)) {
+                    alert('Please enter a valid email');
                     return [2 /*return*/];
                 }
                 body = {

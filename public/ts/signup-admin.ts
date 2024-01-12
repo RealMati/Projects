@@ -6,9 +6,16 @@ const emailRegexA = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
 
 formElSUA.addEventListener('submit', async (event: Event) => {
     event.preventDefault()
-    if (!passwordFieldSUA || !passwordFieldSU2A || passwordFieldSUA.value.length < 6 || passwordFieldSUA.value !== passwordFieldSU2A.value || !emailRegexA.test(emailFieldSUA.value)) {
-        // add UI indicator
-        alert('Input Email or Password is invalid')
+    if (!passwordFieldSUA.value || !passwordFieldSU2A.value || passwordFieldSUA.value.trim().length < 6) {
+        alert('Password length must be atleast 6')
+        return
+    }
+    if (passwordFieldSUA.value !== passwordFieldSU2A.value) {
+        alert('Passwords do not match')
+        return
+    }
+    if (!emailRegexA.test(emailFieldSUA.value)) {
+        alert('Please enter a valid email')
         return
     }
     const body = {

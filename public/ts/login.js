@@ -38,12 +38,21 @@ var _this = this;
 var formEl = document.getElementById('form');
 var emailFieldEl = document.getElementById('email');
 var passwordFieldEl = document.getElementById('password');
+var emailRegexL = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 formEl.addEventListener('submit', function (event) { return __awaiter(_this, void 0, void 0, function () {
     var response;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 event.preventDefault();
+                if (passwordFieldEl.value.trim().length < 6) {
+                    alert('Password length must be atleast 6');
+                    return [2 /*return*/];
+                }
+                if (!emailRegexL.test(emailFieldEl.value)) {
+                    alert('Please enter a valid email');
+                    return [2 /*return*/];
+                }
                 return [4 /*yield*/, fetch('/auth/login', {
                         method: 'POST',
                         headers: {
@@ -56,6 +65,12 @@ formEl.addEventListener('submit', function (event) { return __awaiter(_this, voi
                     })];
             case 1:
                 response = _a.sent();
+                if (response.ok) {
+                    window.location.replace('/albums/manage');
+                }
+                else {
+                    alert('Incorrect username or password');
+                }
                 return [2 /*return*/];
         }
     });

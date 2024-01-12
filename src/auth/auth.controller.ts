@@ -14,15 +14,11 @@ export class AuthController {
 
     @Get('/login')
     @Render("login")
-    getLoginPage() {
-        return {}
-    }
+    getLoginPage() { }
 
     @Get('/signup')
     @Render("signup")
-    getSignupPage() {
-        return {}
-    }
+    getSignupPage() { }
 
     @Post('/signup')
     signUp(@Body() reqBody: SignUpDto): Promise<{ token: string }> {
@@ -38,7 +34,6 @@ export class AuthController {
         } else {
             res.cookie('accessToken', "", { maxAge: 1 }).sendStatus(409)
         }
-        return
     }
 
     @Get('/admin/login')
@@ -69,5 +64,4 @@ export class AuthController {
         }
         return
     }
-
 }

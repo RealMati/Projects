@@ -38,11 +38,20 @@ var _this = this;
 var formElA = document.getElementById('form');
 var emailFieldElA = document.getElementById('email');
 var passwordFieldElA = document.getElementById('password');
+var emailRegexAd = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 formElA.addEventListener('submit', function (event) { return __awaiter(_this, void 0, void 0, function () {
     var response;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
+                if (passwordFieldElA.value.trim().length < 6) {
+                    alert('Password length must be atleast 6');
+                    return [2 /*return*/];
+                }
+                if (!emailRegexAd.test(emailFieldElA.value)) {
+                    alert('Please enter a valid email');
+                    return [2 /*return*/];
+                }
                 event.preventDefault();
                 return [4 /*yield*/, fetch('/auth/admin/login', {
                         method: 'POST',
