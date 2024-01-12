@@ -62,9 +62,14 @@ document.addEventListener('DOMContentLoaded', function () { return __awaiter(_th
                     var arr = album.albumArtPath.split('\\');
                     var path = "/" + arr[1] + "/" + arr[2];
                     console.log(path);
-                    str += "<div id=\"album\" data-album-id=\"".concat(album._id, "\"><img src=\"").concat(path, "\" alt=\"").concat(album.title, "\"/><h2>").concat(album.title, "</h2><p>Genre: ").concat(album.genre, "</p><p>Description: ").concat(album.description, "</p><p type=\"date\">Date: ").concat(new Date(album.date).toLocaleDateString(), "</p></div>");
+                    str += "<div class=\"album\" data-album-id=\"".concat(album._id, "\"><img src=\"").concat(path, "\" alt=\"").concat(album.title, "\"/><h2>").concat(album.title, "</h2><p>Genre: ").concat(album.genre, "</p><p>Description: ").concat(album.description, "</p><p type=\"date\">Date: ").concat(new Date(album.date).toLocaleDateString(), "</p></div>");
                 });
                 albumContainer.innerHTML = str;
+                albumContainer.childNodes.forEach(function (albumEl) {
+                    albumEl.addEventListener('click', function () {
+                        window.location.replace('/albums/info/' + albumEl.getAttribute('data-album-id'));
+                    });
+                });
                 return [2 /*return*/];
         }
     });

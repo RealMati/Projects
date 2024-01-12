@@ -24,7 +24,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         const arr = album.albumArtPath.split('\\')
         const path = "/" + arr[1] + "/" + arr[2]
         console.log(path)
-        str += `<div id="album" data-album-id="${album._id}"><img src="${path}" alt="${album.title}"/><h2>${album.title}</h2><p>Genre: ${album.genre}</p><p>Description: ${album.description}</p><p type="date">Date: ${new Date(album.date).toLocaleDateString()}</p></div>`;
+        str += `<div class="album" data-album-id="${album._id}"><img src="${path}" alt="${album.title}"/><h2>${album.title}</h2><p>Genre: ${album.genre}</p><p>Description: ${album.description}</p><p type="date">Date: ${new Date(album.date).toLocaleDateString()}</p></div>`;
     })
     albumContainer.innerHTML = str
+
+    albumContainer.childNodes.forEach(albumEl => {
+        albumEl.addEventListener('click', () => {
+            window.location.replace('/albums/info/' + (albumEl as HTMLElement).getAttribute('data-album-id'))
+        })
+    })
 })
