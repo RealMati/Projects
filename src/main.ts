@@ -12,6 +12,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe())
   app.useStaticAssets(join(__dirname, "..", "public"))
   app.setBaseViewsDir(join(__dirname, "..", "views"))
+  app.useStaticAssets(join(__dirname, "..", "local")) 
   app.setViewEngine('hbs')
   await app.listen(3000);
 }

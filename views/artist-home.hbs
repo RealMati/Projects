@@ -51,6 +51,43 @@
       max-width: 100%;
       height: auto;
     }
+
+      #albumContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .music-card {
+            border: 2px solid #fff; /* White border */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+            width: calc(33.33% - 20px); /* Initially three cards in a row with 20px gap */
+            margin-bottom: 20px;
+            background-color: #fff;
+            transition: width 0.3s ease;
+            color:black
+        }
+
+        .music-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .music-card:hover {
+            width: calc(100% - 20px); /* Enlarge the card on hover */
+        }
+
+        .music-card div {
+            padding: 15px;
+        }
+
+        h2, p, img {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 

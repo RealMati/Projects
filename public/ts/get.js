@@ -41,11 +41,13 @@ function renderAlbums(albums) {
 
       albumCard.innerHTML = `
           <div>
+          <img src="${album.albumArtPath}" alt="${album.title}" />
               <h2>${album.title}</h2>
               <p>Genre: ${album.genre}</p>
               <p>Description: ${album.description}</p>
               <p type="date">Date: ${Date(album.Date)}</p>
-              <img src="/${album.albumArtPath}" alt="${album.title}" />
+             
+
           </div>
       `;
 
