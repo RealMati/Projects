@@ -21,9 +21,13 @@ export class AlbumsController {
 
     @Get('/manage')
     @Render('artist-home')
-    async getPage() {
-        const albumsData = await this.albumService.getAllAlbums(); // Fetch albums data from the service
-        return { albums: albumsData }; // Pass albums data to the view
+    async getPage(@Req() req: Request) {
+        return await this.albumService.getArtistInfo(req)
+    }
+
+    @Get('/published')
+    async getAlbumByArtistId(@Req() req: Request) {
+        return this.albumService.findByArtistId(req)
     }
 
     @Get('/info/:id')
@@ -55,7 +59,7 @@ export class AlbumsController {
     }
 
 
-    
+
 
     @Post()
     @UseInterceptors(FileInterceptor('albumArt', {

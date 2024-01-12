@@ -44,14 +44,15 @@
                 style="box-shadow: 0px 4px 25px 0px rgba(103, 215, 250, 0.25);">
             <p class="text-white font-extralight text-5xl sm:text-6xl">{{artistName}}</p>
         </div>
-        <div id="AlbumDetail" class="flex justify-center items-center pl-4 sm:pl-20">
-            <div class="w-2/5 flex justify-end pr-2 sm:pr-6">
+        <div id="AlbumDetail" class="flex flex-col md:flex-row justify-center items-center pl-4 sm:pl-20 w-full">
+            <div class="w-11/12 md:w-2/5 flex justify-center pr-2 sm:pr-6">
                 <div class="relative">
                     {{!-- <img id="albumArt" src="/images/albumPlaceholder.png" alt="Album Art " class="w-80"> --}}
-                    <img id="albumArt" src="{{albumArt}}" alt="Album Art" class="w-80 h-80 mx-5 rounded-lg shadow-lg">
+                    <img id="albumArt" src="{{albumArt}}" alt="Album Art"
+                        class="w-52 h-52 md:w-80 md:h-80 md:mx-5 rounded-lg shadow-lg">
                 </div>
             </div>
-            <div class="flex flex-col w-3/6">
+            <div class="flex flex-col md:w-3/6 text-center md:text-left mt-2 md:pl-3">
                 <p id="albumName" class="text-4xl"></p>
                 <p>Released on <span id="albumDate">{{albumDate}}</span></p>
                 <p>Number of Tracks: <span id="trackNumber">{{trackNumber}}</span></p>

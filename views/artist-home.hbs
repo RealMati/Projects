@@ -7,36 +7,32 @@
     <link rel="stylesheet" href="/css/artist-home.css">
     <link rel="icon" href="/images/masinko-logo-purp.png">
     <link rel="stylesheet" href="/css/bg.css">
-    <link rel="stylesheet" href="/css/public.css">
-    <link rel="icon" href="images/masinko-logo-purp.png">
+    <link rel="icon" href="/images/masinko-logo-purp.png">
     <link rel="stylesheet" href="/css/bg.css">
-
-
+    <link rel="stylesheet" href="/css/public.css">
     <title>Masinqo | Artist Home</title>
 
-
-    
 </head>
 
-<body class="body  bg-gradient-to-br from-black via-gray-800 to-purple-900">
-    <div class="container">
-        <header class="header">
+<body class="body bg-gradient-to-br from-black via-gray-800 to-purple-900">
+    <div class="w-screen h-screen">
+        <header class="w-full flex justify-between py-2 px-5">
             <div id="logo">
                 <img class="logo" src="/images/masinko-logo-white.png" alt="logo">
-                <h1>Masinqo</h1>
+                <h1 class="text-2xl">Masinqo</h1>
             </div>
-            <nav class="icons">
-                <div class="nav-contents">
-                    <img class="icon" src="/images/home.png" alt="home-icon">
-                    <a class="nav__links" href="home.html">Home</a>
+            <nav class="flex gap-3">
+                <div class="flex items-center mx-4" id="toHome">
+                    <img class="w-6 h-6" src="/images/home.png" alt="home-icon">
+                    <a class="mx-2 text-lg" href="home.html">Home</a>
                 </div>
-                <div class="nav-contents">
-                    <img class="icon" id="addIcon" src="/images/add.png" alt="add_mucic-icon">
-                    <a class="nav__links" href="#">Add Music</a>
+                <div class="flex items-center" id="addIcon">
+                    <img class="w-6 h-6" src="/images/add.png" alt="add_mucic-icon">
+                    <a class="mx-2 text-lg" href="#">Add Music</a>
                 </div>
-                <div class="nav-contents">
-                    <img class="icon" src="/images/logout.png" alt="logout-icon">
-                    <a class="nav__links" href="#">Log Out</a>
+                <div class="flex items-center" id="toLogout">
+                    <img class="w-6 h-6" src="/images/logout.png" alt="logout-icon">
+                    <a class="mx-2 text-lg" href="#">Log Out</a>
                 </div>
                 <img class="menu-icon" src="/images/menu.png" alt="menu-icon">
             </nav>
@@ -44,13 +40,18 @@
         <main class="main-container">
             <section class="main-container__artist">
                 <img class="artist-image" width="100px" src="/images/artistPlaceholder.png" alt="artist-image">
-                <p class="artist__header">Artist Name</p>
+                <p class="artist__header">{{artistName}}</p>
             </section>
-            <div id="albumContainer"></div>
+            <div id="albumContainer" class="">
+                {{!-- ALBUMS --}}
+            </div>
         </main>
     </div>
+    <footer class="h-10 bg-violet-950 flex justify-center items-center text-lg text-slate-50 py-2">
+        <div>Copyright &copy; Masinqo 2024</div>
+    </footer>
 
-
+    {{!-- MODAL --}}
     <div class="bg-black bg-opacity-75 absolute h-screen w-screen hidden text-slate-50" id="modalContainer">
         <div class="h-full w-full opacity-0 -z-10 " id="modalBackground"></div>
         <div
@@ -92,12 +93,9 @@
             </form>
         </div>
     </div>
-
-
- <script src="/ts/get.js"></script>
-  <script src="/ts/addAlbum.js"></script>
-   <script src="/ts/artistHomeModal.js"></script>
-
+    <script src="/ts/artist-home.js"></script>
+    <script src="/ts/addAlbum.js"></script>
+    <script src="/ts/artistHomeModal.js"></script>
 
 </body>
 

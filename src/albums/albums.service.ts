@@ -62,6 +62,14 @@ export class AlbumsService {
         return albums
     }
 
+    async getArtistInfo(req) {
+        const artist: any = await this.parseToken(req)
+        if (!artist) {
+            throw new BadRequestException('Cookie not found')
+        }
+        return { artistName: artist.name }
+    }
+
     // GET to /albums/:id
     async findById(id: string): Promise<Album> {
         if (!mongoose.isValidObjectId(id)) {
@@ -71,6 +79,16 @@ export class AlbumsService {
         if (!album) {
             throw new NotFoundException('Album not found')
         }
+        return album
+    }
+
+    async findByArtistId(req: Request) {
+        const artist: any = await this.parseToken(req)
+        if (!artist) {
+            throw new BadRequestException('Cookie not found')
+        }
+        console.log(artist)
+        const album = await this.albumModel.find({ artist: artist._id.toString() })
         return album
     }
 
@@ -207,20 +225,6 @@ export class AlbumsService {
         })
         await album.save()
         return await this.uploadSong(id, file, album.songs.length - 1)
-    }
-
-    async getAllAlbums(): Promise<any[]> {
-        const albums = await this.albumModel.find().exec();
-
-        // Map the relevant fields to a new array of objects
-        return albums.map((album) => ({
-            title: album.title,
-            genre: album.genre,
-            description: album.description,
-            date: album.date,
-            albumArtPath: album.albumArtPath,
-
-        }));
     }
 
     async findAlbumSongs(id: string) {

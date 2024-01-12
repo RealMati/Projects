@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build-ts": "tsc ./public/ts/login.ts ./public/ts/signup.ts ./public/ts/signup-admin.ts ./public/ts/login-admin.ts ./public/ts/artist.ts ./public/ts/albumPage.ts ./public/ts/albumPageModal.ts",
+    "build-ts": "tsc ./public/ts/login.ts ./public/ts/signup.ts ./public/ts/signup-admin.ts ./public/ts/login-admin.ts ./public/ts/artist.ts ./public/ts/albumPage.ts ./public/ts/albumPageModal.ts ./public/ts/artist-home.ts",
     "build-css": "tailwindcss -i public/css/src.css -o public/css/public.css",
     "build-css:dev": "tailwindcss -i public/css/src.css -o public/css/public.css --watch",
     "build": "nest build",
