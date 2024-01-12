@@ -84,12 +84,16 @@ export class AlbumsService {
             throw new BadRequestException('Album not found')
         }
         const date = new Date(album.date)
+        // album art file path
+        const arr = album.albumArtPath.split('\\')
+        const path = "/" + arr[1] + "/" + arr[2]
         return {
             artistName: artist.name,
             albumDate: date.toLocaleString('default', { month: "long" }) + " " + date.getUTCDate() + ", " + date.getUTCFullYear(),
             trackNumber: album.songs.length,
             genre: album.genre,
-            description: album.description
+            description: album.description,
+            albumArt: path
         }
     }
 
@@ -205,7 +209,6 @@ export class AlbumsService {
         return await this.uploadSong(id, file, album.songs.length - 1)
     }
 
-
     async getAllAlbums(): Promise<any[]> {
         const albums = await this.albumModel.find().exec();
 
@@ -248,19 +251,6 @@ export class AlbumsService {
             throw new InternalServerErrorException(error.message);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     // helper function for addSong - uploads the audio to the FS and stores the path in the song object
     async uploadSong(id: string, file: Express.Multer.File, songIndex) {

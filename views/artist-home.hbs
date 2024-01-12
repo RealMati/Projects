@@ -38,37 +38,37 @@
             z-index: -1;
         }
 
-         .card {
-      border: 1px solid #ddd;
-      padding: 10px;
-      margin: 10px;
-      width: 200px;
-      text-align: center;
-      display: inline-block;
-    }
+        .card {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+            text-align: center;
+            display: inline-block;
+        }
 
-    img {
-      max-width: 100%;
-      height: auto;
-    }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
 
-   #albumContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(calc(33.33% - 20px), 1fr));
-  gap: 20px;
-}
+        #albumContainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(calc(33.33% - 20px), 1fr));
+            gap: 20px;
+        }
 
-.music-card {
-  border: 3px solid;
-  border-color: white;
-  border-radius: 8px;
-  background-color: transparent;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-  transition: width 0.3s ease;
-  color: white;
-}
+        .music-card {
+            border: 3px solid;
+            border-color: white;
+            border-radius: 8px;
+            background-color: transparent;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: width 0.3s ease;
+            color: white;
+        }
 
 
         .music-card img {
@@ -78,14 +78,17 @@
         }
 
         .music-card:hover {
-            width: calc(100% - 20px); /* Enlarge the card on hover */
+            width: calc(100% - 20px);
+            /* Enlarge the card on hover */
         }
 
         .music-card div {
             padding: 15px;
         }
 
-        h2, p, img {
+        h2,
+        p,
+        img {
             margin-bottom: 10px;
         }
     </style>
@@ -166,26 +169,26 @@
         </div>
     </div>
 
-<script>
-     const modalContainer = document.getElementById('modalContainer');
-            const modalBackground = document.getElementById('modalBackground');
-            const addIcon = document.getElementById('addIcon');
+    <script>
+        const modalContainer = document.getElementById('modalContainer');
+        const modalBackground = document.getElementById('modalBackground');
+        const addIcon = document.getElementById('addIcon');
 
-            addIcon.addEventListener('click', function () {
-                modalContainer.style.display = 'block';
-            });
+        addIcon.addEventListener('click', function () {
+            modalContainer.style.display = 'block';
+        });
 
-            modalBackground.addEventListener('click', function (event) {
-                if (event.target === modalBackground) {
-                    modalContainer.style.display = 'none';
-                }
-            });
+        modalBackground.addEventListener('click', function (event) {
+            if (event.target === modalBackground) {
+                modalContainer.style.display = 'none';
+            }
+        });
 
-</script>
+    </script>
 
- <script src="/ts/get.js"></script>
-  <script src="/ts/addAlbum.js"></script>
- 
+    <script src="/ts/get.js"></script>
+    <script src="/ts/addAlbum.js"></script>
+
 
 </body>
 

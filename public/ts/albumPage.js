@@ -36,10 +36,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 document.addEventListener('DOMContentLoaded', function () { return __awaiter(_this, void 0, void 0, function () {
-    var trackContainer, arr, id, songRes, songs;
+    var toHome, toLogout, trackContainer, arr, id, songRes, songs, str;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
+                toHome = document.getElementById('toHome');
+                toLogout = document.getElementById('toLogout');
+                toHome.addEventListener('click', function () {
+                    window.location.replace('/albums/manage');
+                });
+                toLogout.addEventListener('click', function () {
+                    window.location.replace('/logout');
+                });
                 trackContainer = document.getElementById('tracks');
                 arr = window.location.href.split('/');
                 id = arr[arr.length - 1].slice(0, 24);
@@ -49,7 +57,15 @@ document.addEventListener('DOMContentLoaded', function () { return __awaiter(_th
                 return [4 /*yield*/, songRes.json()];
             case 2:
                 songs = _a.sent();
-                console.log(songs);
+                str = "";
+                songs.forEach(function (song) {
+                    // audio file path
+                    var arr = song.filePath.split('\\');
+                    var path = "/" + arr[1] + "/" + arr[2];
+                    str += "<div class=\"rounded-[5px] border-2 border-white flex flex-wrap justify-between items-center py-2 px-5 hover:bg-neutral-900 hover:bg-opacity-35\"><div class=\"flex gap-4 items-center\"><img src=\"/images/albumPlaceholder.png\" alt=\"Album Art for the Track\" class=\"h-10\"><p class=\"text-lg\">".concat(song.name, "</p></div><audio src=\"").concat(path, "\" controls class=\"bg-purple-500 rounded-md w-full my-1 md:my-0 md:w-fit\"></audio></div>");
+                    console.log(path);
+                });
+                trackContainer.innerHTML = str;
                 return [2 /*return*/];
         }
     });

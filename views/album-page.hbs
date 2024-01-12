@@ -20,17 +20,16 @@
                 <img style="width: 50px;" src="/images/masinko-logo-white.png" alt="logo" class="w-[50px]">
                 <a href="#" class="text-white text-lg font-semibold hidden sm:block">Masinqo</a>
             </div>
-
             <ul class="flex space-x-4 pr-4">
-                <div class="flex items-center gap-1 md:gap-2">
-                    <img src="/images/home.svg" alt="" class="h-5 w-5 hidden sm:block ">
+                <div class="flex items-center gap-1 md:gap-2" id="toHome">
+                    <img src="/images/home.svg" alt="" class="h-5 w-5 hidden sm:block">
                     <li><a href="#" class="text-white hover:text-blue-200">Home</a></li>
                 </div>
                 <div class="flex items-center gap-1 md:gap-2 addIcon">
                     <img src="/images/add.svg" alt="" class="h-7 w-7  hidden sm:block">
                     <li><a href="#" class="text-white hover:text-blue-200">Add Music</a></li>
                 </div>
-                <div class="flex items-center gap-1 md:gap-2">
+                <div class="flex items-center gap-1 md:gap-2" id="toLogout">
                     <img src="/images/logout.svg" alt="" class="h-5 w-5  hidden sm:block">
                     <li><a href="#" class="text-white hover:text-blue-200">Log Out</a></li>
                 </div>
@@ -45,10 +44,11 @@
                 style="box-shadow: 0px 4px 25px 0px rgba(103, 215, 250, 0.25);">
             <p class="text-white font-extralight text-5xl sm:text-6xl">{{artistName}}</p>
         </div>
-        <div id="AlbumDetail" class="flex  items-center pl-4 sm:pl-20">
-            <div class="w-2/5 flex justify-end  pr-2 sm:pr-6">
+        <div id="AlbumDetail" class="flex justify-center items-center pl-4 sm:pl-20">
+            <div class="w-2/5 flex justify-end pr-2 sm:pr-6">
                 <div class="relative">
-                    <img id="albumArt" src="/images/albumPlaceholder.png" alt="Album Art " class="w-80">
+                    {{!-- <img id="albumArt" src="/images/albumPlaceholder.png" alt="Album Art " class="w-80"> --}}
+                    <img id="albumArt" src="{{albumArt}}" alt="Album Art" class="w-80 h-80 mx-5 rounded-lg shadow-lg">
                 </div>
             </div>
             <div class="flex flex-col w-3/6">
@@ -78,14 +78,6 @@
         <div class=" my-5 container mx-auto px-8 flex flex-col">
             {{!-- TRACKS --}}
             <div class="flex flex-col gap-5" id="tracks">
-                <div
-                    class=" rounded-[5px] border-2 border-white flex justify-between items-center py-2 px-5 hover:bg-neutral-900 hover:bg-opacity-35">
-                    <div class="flex gap-4 items-center">
-                        <img src="/images/albumPlaceholder.png" alt="Album Art for the Track" class="h-10">
-                        <p class="text-lg">TRACK NAME</p>
-                    </div>
-                    <audio src="" controls class="bg-purple-500 rounded-md"></audio>
-                </div>
             </div>
         </div>
     </main>
