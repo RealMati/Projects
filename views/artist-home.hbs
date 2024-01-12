@@ -1,172 +1,155 @@
-<html lang='en'>
+<!DOCTYPE html>
+<html lang="en">
 
-  <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    {{!
-  <link rel="stylesheet" href="/css/artist-home.css"> }}
-    <link rel='icon' href='/images/masinko-logo-purp.png' />
-    <link rel='stylesheet' href='/css/bg.css' />
-    <link rel='stylesheet' href='/css/albumPage.css' />
-    <link rel='stylesheet' href='/css/public.css' />
-    <link rel='icon' href='/images/masinko-logo-purp.png' />
-    <link rel='stylesheet' href='/css/bg.css' />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/artist-home.css">
+    <link rel="icon" href="/images/masinko-logo-purp.png">
+    <link rel="stylesheet" href="/css/bg.css">
+    <link rel="stylesheet" href="/css/public.css">
+    <link rel="icon" href="images/masinko-logo-purp.png">
+    <link rel="stylesheet" href="/css/bg.css">
+
 
     <title>Masinqo | Artist Home</title>
 
-  </head>
 
-  <body class='body login'>
-    <div class='container'>
-      <header class='header'>
-        <div id='logo'>
-          <img class='logo' src='/images/masinko-logo-white.png' alt='logo' />
-          <h1>Masinqo</h1>
-        </div>
-        <nav class='icons'>
-          <div class='nav-contents'>
-            <img class='icon' src='/images/home.png' alt='home-icon' />
-            <a class='nav__links' href='home.html'>Home</a>
-          </div>
-          <div class='nav-contents'>
-            <img
-              class='icon'
-              id='addIcon'
-              src='/images/add.png'
-              alt='add_mucic-icon'
-            />
-            <a class='nav__links' href='#'>Add Music</a>
-          </div>
-          <div class='nav-contents'>
-            <img class='icon' src='/images/logout.png' alt='logout-icon' />
-            <a class='nav__links' href='#'>Log Out</a>
-          </div>
-          <img class='menu-icon' src='/images/menu.png' alt='menu-icon' />
-        </nav>
-      </header>
-      <main class='main-container'>
-        <section class='main-container__artist'>
-          <img
-            class='artist-image'
-            width='100px'
-            src='/images/artistPlaceholder.png'
-            alt='artist-image'
-          />
-          <p class='artist__header'>Artist Name</p>
-        </section>
-        <div class='main-container__musics'>
-          <section>
-            <img
-              class='music-image'
-              src='/images/albumPlaceholder.png'
-              width='200px'
-              alt='music-image'
-            />
-            <p> You just have to comply with it</p>
-          </section>
-          <section>
-            <img
-              class='music-image'
-              src='/images/albumPlaceholder.png'
-              width='200px'
-              alt='music-image'
-            />
-            <p> You just have to comply with it</p>
-          </section>
-          <section>
-            <img
-              class='music-image'
-              src='/images/albumPlaceholder.png'
-              width='200px'
-              alt='music-image'
-            />
-            <p> You just have to comply with it</p>
-          </section>
-        </div>
-      </main>
+    <style>
+        #modalContainer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+        }
+
+        #modalBackground {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            z-index: -1;
+        }
+
+         .card {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin: 10px;
+      width: 200px;
+      text-align: center;
+      display: inline-block;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    </style>
+</head>
+
+<body class="body login">
+    <div class="container">
+        <header class="header">
+            <div id="logo">
+                <img class="logo" src="/images/masinko-logo-white.png" alt="logo">
+                <h1>Masinqo</h1>
+            </div>
+            <nav class="icons">
+                <div class="nav-contents">
+                    <img class="icon" src="/images/home.png" alt="home-icon">
+                    <a class="nav__links" href="home.html">Home</a>
+                </div>
+                <div class="nav-contents">
+                    <img class="icon" id="addIcon" src="/images/add.png" alt="add_mucic-icon">
+                    <a class="nav__links" href="#">Add Music</a>
+                </div>
+                <div class="nav-contents">
+                    <img class="icon" src="/images/logout.png" alt="logout-icon">
+                    <a class="nav__links" href="#">Log Out</a>
+                </div>
+                <img class="menu-icon" src="/images/menu.png" alt="menu-icon">
+            </nav>
+        </header>
+        <main class="main-container">
+            <section class="main-container__artist">
+                <img class="artist-image" width="100px" src="/images/artistPlaceholder.png" alt="artist-image">
+                <p class="artist__header">Artist Name</p>
+            </section>
+            <div id="albumContainer"></div>
+        </main>
     </div>
 
-    <div
-      class='bg-black bg-opacity-75 absolute h-screen w-screen hidden text-slate-50'
-      id='modalContainer'
-    >
-      <div class='h-full w-full opacity-0 -z-10' id='modalBackground'></div>
-      <div
-        class='bg-gray-950 w-9/12 max-w-md h-min absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center py-6 border border-fuchsia-600 rounded-lg'
-      >
-        <div class='flex items-center gap-3'>
-          <img src='/images/pencil-purp.svg' alt='' class='w-10 h-10' />
-          <p class='text-3xl'>Add Music</p>
-        </div>
-        <form
-          action=''
-          onsubmit='return validateForm()'
-          class='flex flex-col gap-3 my-4 w-8/12 text-white' enctype="multipart/form-data"
-        >
-          <div class='flex flex-col'>
-            <label for='type' class='text-lg mb-1 text-white'>Type</label>
-            <select
-              name='type'
-              id='type'
-              class='bg-fuchsia-950 py-2 px-2 outline-none rounded-md'
-            >
-              <option value='single'>Single</option>
-              <option value='LP'>Album</option>
-            </select>
-            <div id='typeMessage' class='hidden text-red-500'>Type is required.</div>
-          </div>
-          <div class='flex flex-col'>
-            <label for='albumName' class='text-lg mb-1 text-white'>Name</label>
-            <input
-              type='text'
-              id='albumName'
-              name='albumName'
-              class='bg-slate-900 py-1 px-2 outline-none rounded-md'
-            />
-            <div id='albumNameMessage' class='hidden text-red-500'>Name is
-              required.</div>
-          </div>
-          <div class='flex flex-col'>
-            <label for='genre' class='text-lg mb-1'>Genre</label>
-            <input
-              type='text'
-              id='genre'
-              name='genre'
-              class='bg-slate-900 py-1 px-2 outline-none rounded-md'
-            />
-            <div id='genreMessage' class='hidden text-red-500'>Genre is
-              required.</div>
-          </div>
-          <div class='flex flex-col'>
-            <label for='description' class='text-lg mb-1'>Description</label>
-            <textarea
-              name='description'
-              id='description'
-              rows='3'
-              class='bg-slate-900 py-1 px-2 outline-none rounded-md'
-            ></textarea>
-            <div id='descriptionMessage' class='hidden text-red-500'>Description
-              is required.</div>
-          </div>
-          <div class='flex flex-col'>
-            <label for='cover' class='text-lg mb-1'>Cover Image</label>
-            <input type='file' id='cover' name='cover' class='text-center' />
-            <div id='coverMessage' class='hidden text-red-500'>Cover image is
-              required.</div>
-          </div>
-          <button
-            class='bg-fuchsia-800 border-2 border-fuchsia-800 px-4 pb-2 pt-1 w-min mt-6 mx-auto rounded-3xl hover:bg-transparent hover:text-fuchsia-500 hover:transition-colors transition-colors'
-            type='submit'
-          >
-            Add
-          </button>
-        </form>
 
-      </div>
+    <div class="bg-black bg-opacity-75 absolute h-screen w-screen hidden text-slate-50" id="modalContainer">
+        <div class="h-full w-full opacity-0 -z-10 " id="modalBackground"></div>
+        <div
+            class="bg-gray-950 w-9/12 max-w-md h-min absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center py-6 border border-fuchsia-600 rounded-lg">
+            <div class="flex items-center gap-3">
+                <img src="/images/pencil-purp.svg" alt="" class="w-10 h-10">
+                <p class="text-3xl">Add Music</p>
+            </div>
+            <form action="" class="flex flex-col gap-3 my-4 w-8/12 text-white">
+                <div class="flex flex-col">
+                    <label for="type" class="text-lg mb-1 text-white">Type</label>
+                    <select name="type" class="bg-fuchsia-950 py-2 px-2 outline-none rounded-md">
+                        <option value="single">Single</option>
+                        <option value="Album">Album</option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label for="albumName" class="text-lg mb-1 text-white">Name</label>
+                    <input type="text" name="title" class="bg-slate-900 py-1 px-2 outline-none rounded-md">
+                </div>
+                <div class="flex flex-col">
+                    <label for="genre" class="text-lg mb-1">Genre</label>
+                    <input type="text" name="genre" class="bg-slate-900 py-1 px-2 outline-none rounded-md">
+                </div>
+                <div class="flex flex-col">
+                    <label for="description" class="text-lg mb-1">Description</label>
+                    <textarea name="description" rows="3"
+                        class="bg-slate-900 py-1 px-2 outline-none rounded-md"></textarea>
+                </div>
+                <div class="flex flex-col">
+                    <label for="cover" class="text-lg mb-1">Cover Image</label>
+                    <input type="file" name="albumArt" class="text-center">
+                </div>
+                <button
+                    class="bg-fuchsia-800 border-2 border-fuchsia-800 px-4 pb-2 pt-1 w-min mt-6 mx-auto rounded-3xl hover:bg-transparent hover:text-fuchsia-500 hover:transition-colors transition-colors"
+                    type="submit" id="add">
+                    Add
+                </button>
+            </form>
+        </div>
     </div>
 
-    <script src='ts/artist-home.js'></script>
-    <script src='ts/artist-home.ts'></script>
-  </body>
+<script>
+     const modalContainer = document.getElementById('modalContainer');
+            const modalBackground = document.getElementById('modalBackground');
+            const addIcon = document.getElementById('addIcon');
+
+            addIcon.addEventListener('click', function () {
+                modalContainer.style.display = 'block';
+            });
+
+            modalBackground.addEventListener('click', function (event) {
+                if (event.target === modalBackground) {
+                    modalContainer.style.display = 'none';
+                }
+            });
+
+</script>
+
+ <script src="/ts/addAlbum.js"></script>
+ 
+ 
+
+</body>
 
 </html>
