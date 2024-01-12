@@ -10,9 +10,11 @@ async function bootstrap() {
   app.enableCors()
   app.use(cookieParser())
   app.useGlobalPipes(new ValidationPipe())
-  app.useStaticAssets(join(__dirname, "..", "public"))
+  app.useStaticAssets(join(__dirname, '..', 'public')); // Public assets (stylesheets, images, etc.)
+  app.useStaticAssets(join(__dirname, '..', 'local')); // Local assets (album thumbnails, etc.)
+
   app.setBaseViewsDir(join(__dirname, "..", "views"))
-  app.useStaticAssets(join(__dirname, "..", "local")) 
+ 
   app.setViewEngine('hbs')
   await app.listen(3000);
 }

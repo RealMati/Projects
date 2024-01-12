@@ -18,7 +18,7 @@ export class ArtistsController {
         return this.artistService.getArtists(req)
     }
 
-    
+    @Get('/images/:id')
 
     @Put(':id')
     async updateArtist(@Param('id') id: string, @Req() req: Request) {

@@ -201,6 +201,20 @@ export class AlbumsService {
         }));
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     async getAlbumArtPath(id: string): Promise<string | undefined> {
         try {
             const album = await this.albumModel.findById(id);
@@ -218,6 +232,19 @@ export class AlbumsService {
             throw new InternalServerErrorException(error.message);
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // helper function for addSong - uploads the audio to the FS and stores the path in the song object
     async uploadSong(id: string, file: Express.Multer.File, songIndex) {
