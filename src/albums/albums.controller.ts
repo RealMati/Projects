@@ -14,10 +14,13 @@ export class AlbumsController {
     ) { }
 
     @Get()
-    @Render('artist-home')
     async getAllAlbums(@Req() req: Request, @Query() query: EQuery): Promise<Album[]> {
         return this.albumService.findAll(req, query)
     }
+
+    @Get('/manage')
+    @Render('artist-home')
+    getPage() { }
 
     @Get(':id')
     @Render('album-page')
