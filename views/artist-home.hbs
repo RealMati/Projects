@@ -52,24 +52,24 @@
       height: auto;
     }
 
-      #albumContainer {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            gap: 20px;
-        }
+   #albumContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(33.33% - 20px), 1fr));
+  gap: 20px;
+}
 
-        .music-card {
-            border: 2px solid #fff; /* White border */
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
-            width: calc(33.33% - 20px); /* Initially three cards in a row with 20px gap */
-            margin-bottom: 20px;
-            background-color: #fff;
-            transition: width 0.3s ease;
-            color:black
-        }
+.music-card {
+  border: 3px solid;
+  border-color: white;
+  border-radius: 8px;
+  background-color: transparent;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  transition: width 0.3s ease;
+  color: white;
+}
+
 
         .music-card img {
             width: 100%;
@@ -91,7 +91,7 @@
     </style>
 </head>
 
-<body class="body login">
+<body class="body  bg-gradient-to-br from-black via-gray-800 to-purple-900">
     <div class="container">
         <header class="header">
             <div id="logo">

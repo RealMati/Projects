@@ -38,7 +38,7 @@ export class AlbumsController {
         return this.albumService.findById(id)
     }
 
-    @Get('images/:id')
+    @Get('/images/:id')
     async getAlbumArt(@Param('id') id: string, @Res() res: Response): Promise<void> {
         try {
             const result = await this.albumService.getAlbumArtPath(id); // Update to use albumService
@@ -47,15 +47,15 @@ export class AlbumsController {
                 return;
             }
 
-            // Set appropriate content type based on your image type
-            res.contentType('image/jpeg'); // Update with your image type
-
             // Send the image file
             res.sendFile(result);
         } catch (error) {
             res.status(500).send('Internal Server Error');
         }
     }
+
+
+    
 
     @Post()
     @UseInterceptors(FileInterceptor('albumArt', {
