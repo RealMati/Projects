@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="/css/public.css">
     <link rel="icon" href="/images/masinko-logo-purp.png">
     <link rel="stylesheet" href="/css/bg.css">
-    <title>Masinqo | Log In</title>
+    <title>Admin | Log In</title>
 </head>
 
-<body class="login flex h-screen justify-center items-center bg-violet-600 font-sans">
+<body class="adminLogin flex h-screen justify-center items-center bg-violet-600 font-sans">
     <div
         class="w-11/12 md:w-7/12 lg:4/12 max-w-screen-sm h-min  lg:border-4 border-violet-300 rounded-3xl flex flex-col items-center lg:shadow-md pt-6 pb-8">
         <img src="/images/masinko-logo-white.png" alt="Masinqo Logo" class="w-20 h-20 mt-2 mb-1">
-        <h1 class="text-5xl text-slate-200 mb-6 font-normal">Masinqo</h1>
+        <h1 class="text-5xl text-slate-200 mb-6 font-normal">Masinqo Admins</h1>
         <form id="form" class="text-slate-200 w-full flex flex-col items-center">
             <input type="text" placeholder="Email"
                 class="block my-2 bg-transparent border-2 rounded-md px-2 py-1 w-2/3 text-lg outline-none border-violet-400"
@@ -29,11 +29,16 @@
         </form>
         <p class="italic text-slate-50">
             Don't have an account?
-            <a href="http://localhost:3000/auth/signup"
+            <a href="/auth/admin/signup"
                 class="mb-4 not-italic font-semibold text-purple-100 underline hover:no-underline">Sign Up</a>
         </p>
+        <p class="italic text-slate-50">
+            Are you an artist?
+            <a href="/auth/login" class="mb-4 not-italic font-semibold text-purple-100 underline hover:no-underline">Log
+                In</a>
+        </p>
     </div>
-    <script src="/ts/login.js"></script>
+    <script src="/ts/login-admin.js"></script>
 </body>
 
 </html>

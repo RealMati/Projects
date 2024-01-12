@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/public.css">
+    <link rel="icon" href="/images/masinko-logo-purp.png">
+    <link rel="stylesheet" href="/css/bg.css">
+    <title>Admin | Artists</title>
+</head>
+
+<body class="flex flex-col justify-between bg-purple-50 text-slate-950 w-screen h-screen font-sans">
+    <header class="h-24 bg-violet-900 text-slate-50 flex items-center justify-between px-5 py-3">
+        <div class="flex items-center">
+            <img src="/images/masinko-logo-white.png" alt="" class="w-16 h-16">
+            <h1 class="ml-2 text-4xl font-light">Masinqo Admins - Managing Artists</h1>
+        </div>
+        <div class="p-2 rounded-md hover:bg-violet-950" id="logoutBtn">
+            <img src="/images/logout.svg" alt="" class="w-10">
+        </div>
+    </header>
+
+    <main class="h-full w-full py-3 overflow-hidden">
+        <div class="w-10/12 h-full mx-auto border-2 border-slate-700 rounded-xl shadow-md text-gray-800 overflow-y-scroll"
+            id="contentContainer">
+        </div>
+    </main>
+
+    <footer class="h-10 bg-violet-950 flex justify-center items-center text-lg text-slate-50 py-2">
+        <div>Copyright &copy; Masinqo 2024</div>
+    </footer>
+    <script src="/ts/artist.js"></script>
+</body>
+
+</html>

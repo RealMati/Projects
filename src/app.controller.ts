@@ -1,6 +1,6 @@
-import { Controller, Get, Redirect, Req } from '@nestjs/common';
+import { Controller, Get, Redirect, Req, Res } from '@nestjs/common';
 import { AppService } from './app.service';
-import { Request } from 'express';
+import { Request, Response } from 'express';
 
 @Controller()
 export class AppController {
@@ -10,5 +10,10 @@ export class AppController {
   @Redirect()
   getHello(@Req() req: Request) {
     return this.appService.sendToHome(req);
+  }
+
+  @Get('/logout')
+  async logout(@Res() res: Response) {
+    res.cookie('accessToken', {}, { maxAge: 1 }).sendStatus(200)
   }
 }

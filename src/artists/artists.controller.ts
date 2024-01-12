@@ -9,8 +9,11 @@ export class ArtistsController {
         private artistService: ArtistsService
     ) { }
 
+    @Get('/manage')
+    @Render('artist')
+    getPage() { return }
+
     @Get()
-    @Render('artists')
     async getArtists(@Req() req: Request) {
         return this.artistService.getArtists(req)
     }

@@ -5,6 +5,9 @@ import mongoose from 'mongoose';
 import { Admin } from 'src/auth/schema/admin.schema';
 import { Artist } from 'src/auth/schema/artist.schema';
 import * as jwt from 'jsonwebtoken'
+import * as bcrypt from 'bcrypt'
+import { Album } from 'src/albums/schemas/album.schema';
+import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class ArtistsService {
@@ -12,7 +15,9 @@ export class ArtistsService {
         @InjectModel(Artist.name)
         private artistModel: mongoose.Model<Artist>,
         @InjectModel(Admin.name)
-        private adminModel: mongoose.Model<Admin>
+        private adminModel: mongoose.Model<Admin>,
+        @InjectModel(Album.name)
+        private albumModel: mongoose.Model<Album>
     ) { }
 
     async parseToken(req: Request) {
@@ -37,13 +42,31 @@ export class ArtistsService {
 
     async getArtists(req: Request) {
         await this.parseToken(req)
+        return this.artistModel.find({})
     }
 
     async updateArtist(id: string, req: Request) {
         await this.parseToken(req)
+        if (!ObjectId.isValid(id)) {
+            throw new BadRequestException('Invalid ID provided in the route')
+        }
+        if (req.body.password) {
+            req.body.password = await bcrypt.hash(req.body.password, 10)
+        }
+        await this.artistModel.findByIdAndUpdate(id, req.body)
+        return this.artistModel.findById(id)
     }
 
     async deleteArtist(id: string, req: Request) {
+        if (!ObjectId.isValid(id)) {
+            throw new BadRequestException('Invalid ID provided in the route')
+        }
         await this.parseToken(req)
+        const artist = await this.artistModel.findById(id)
+        if (!artist) {
+            throw new BadRequestException('Artist with the provided ID does not exist.')
+        }
+        await this.albumModel.deleteMany({ artist: artist._id.valueOf() })
+        await this.artistModel.findByIdAndDelete(id, req.body)
     }
 }
