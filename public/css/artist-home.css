@@ -1,118 +1,141 @@
-
 body {
-    font-family: "Inter", sans-serif;
-    color: white;
-    margin: 0;
-  }
-  .container {
-    box-sizing: border-box;
-    padding: 10px;
-    position: relative;
-    height: 100%;
-    width: 100%;
-    background-image: url(background.webp);
-    background-size: cover;
-    box-shadow: 20px inset;
-    background-position: center;
-  }
-  .header {
-    display: fixed;
+  font-family: 'Inter', sans-serif;
+  color: white;
+  margin: 0;
+}
+.container {
+  box-sizing: border-box;
+  padding: 10px;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-image: url(background.webp);
+  background-size: cover;
+  box-shadow: 20px inset;
+  background-position: center;
+}
+.header {
+  display: fixed;
+  display: flex;
+  justify-content: space-between;
+}
+#logo {
+  display: flex;
+  align-items: center;
+}
+.logo {
+  width: 88px;
+  margin: 8px;
+}
+.menu-icon {
+  display: none;
+  padding-right: 12px;
+}
+.error-message {
+  color: red;
+  font-size: 14px;
+  display: none;
+}
+#modalContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+#modalBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: -1;
+}
+.main-container__artist img {
+  border-radius: 50%;
+  padding: 0;
+  border: white 2px solid;
+}
+.artist__header {
+  font-size: 40px;
+  margin-left: 10px;
+}
+.main-container__artist {
+  display: flex;
+  align-items: center;
+}
+.main-container {
+  padding: 10px;
+}
+.main-container * {
+  padding: 10px;
+  border-radius: 10px;
+}
+.main-container__musics {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.nav__links {
+  text-decoration: none;
+  color: white;
+  display: inline;
+  font-weight: bold;
+  font-size: large;
+  padding: 10px;
+}
+
+.music-image {
+  border-radius: 15%;
+}
+.nav-contents {
+  display: flex;
+  align-items: center;
+  padding: 7.5px;
+}
+.icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon {
+  padding-left: 10px;
+  width: 30px;
+}
+
+@media screen and (max-width: 740px) {
+  .main-container__musics {
     display: flex;
-    justify-content: space-between;
-  }
-  #logo {
-    display: flex;
+    flex-direction: column;
     align-items: center;
-  }
-  .logo {
-    width: 88px;
-    margin: 8px;
-  }
-  .menu-icon {
-    display: none;
-    padding-right: 12px;
-  }
-  .main-container__artist img {
-    border-radius: 50%;
-    padding: 0;
-    border: white 2px solid;
-  }
-  .artist__header{
-    font-size: 40px;
-    margin-left: 10px;
-  }
-  .main-container__artist {
-    display: flex;
-    align-items: center;
-  }
-  .main-container {
-    padding: 10px;
-  }
-  .main-container * {
-    padding: 10px;
-    border-radius: 10px;
-  } 
-  .main-container__musics{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
   }
   .nav__links {
-    text-decoration: none;
-    color: white;
-    display: inline;
-    font-weight: bold;
-    font-size: large;
-    padding: 10px;
+    display: none;
   }
-  
-  .music-image {
-    border-radius: 15%;
+  .main-container * {
+    padding: 5px;
+    border-radius: 25px;
   }
+}
+
+@media screen and (max-width: 450px) {
   .nav-contents {
-    display: flex;
-    align-items: center;
-    padding: 7.5px;
+    display: none;
   }
-  .icons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .logo {
+    margin-left: 0;
+    width: 55px;
   }
-  .icon {
-    padding-left: 10px;
-    width: 30px;
+  .header {
+    font-size: 10px;
   }
-  
-  @media screen and (max-width: 740px) {
-    .main-container__musics {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .nav__links {
-      display: none;
-    }
-    .main-container * {
-      padding: 5px;
-      border-radius: 25px;
-    } 
-    
+  .menu-icon {
+    display: block;
+    width: 18px;
   }
-  
-  @media screen and (max-width: 450px) {
-    .nav-contents {
-      display: none;
-    }
-    .logo {
-      margin-left: 0;
-      width: 55px;
-    }
-    .header {
-      font-size: 10px;
-    }
-    .menu-icon {
-      display: block;
-      width: 18px;
-    }
-  }
+}
