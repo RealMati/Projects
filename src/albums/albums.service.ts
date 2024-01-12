@@ -186,6 +186,21 @@ export class AlbumsService {
         return await this.uploadSong(id, file, album.songs.length - 1)
     }
 
+
+    async getAllAlbums(): Promise<any[]> {
+        const albums = await this.albumModel.find().exec();
+
+        // Map the relevant fields to a new array of objects
+        return albums.map((album) => ({
+            title: album.title,
+            genre: album.genre,
+            description: album.description,
+            date: album.date,
+            albumArtPath: album.albumArtPath,
+           
+        }));
+    }
+
     // helper function for addSong - uploads the audio to the FS and stores the path in the song object
     async uploadSong(id: string, file: Express.Multer.File, songIndex) {
         if (!file) {
@@ -272,4 +287,7 @@ export class AlbumsService {
         await document.save();
         return document;
     }
+
+
+
 }
