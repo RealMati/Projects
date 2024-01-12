@@ -1,0 +1,8 @@
+DELETE /albums/songs/65a19c1404e637c88bcd78b2 HTTP/1.1
+Host: localhost:3000
+Content-Type: application/json
+Content-Length: 30
+
+{
+    "name": "Cry me a river"
+}

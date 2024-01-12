@@ -1,0 +1,15 @@
+POST /albums/songs/65a19c1404e637c88bcd78b2 HTTP/1.1
+Host: localhost:3000
+Content-Length: 328
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+Cry me a river
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="song"; filename="/C:/Users/Nati/Downloads/Music/random-thoughts-20586.mp3"
+Content-Type: audio/mpeg
+
+(data)
+------WebKitFormBoundary7MA4YWxkTrZu0gW--

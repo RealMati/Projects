@@ -168,7 +168,8 @@ export class AlbumsService {
         if (artistFromToken._id.valueOf() !== album.artist) {
             throw new UnauthorizedException('Only creators of an album can edit it.')
         }
-        return await this.albumModel.findByIdAndUpdate(id, updates)
+        await this.albumModel.findByIdAndUpdate(id, updates)
+        return this.albumModel.findById(id)
     }
 
     // DELETE to /albums/:id

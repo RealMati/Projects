@@ -40,9 +40,6 @@ export class ArtistsService {
         }
     }
 
-    
-
-
     async getArtists(req: Request) {
         await this.parseToken(req)
         return this.artistModel.find({})

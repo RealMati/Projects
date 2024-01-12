@@ -1,0 +1,8 @@
+PUT /artists/65a198f3d6d80abe6dbe95c5 HTTP/1.1
+Host: localhost:3000
+Content-Type: application/json
+Content-Length: 41
+
+{
+    "email": "habtabe@gmail.com"
+}
