@@ -103,8 +103,12 @@ export class AlbumsService {
         }
         const date = new Date(album.date)
         // album art file path
-        const arr = album.albumArtPath.split('\\')
-        const path = "/" + arr[1] + "/" + arr[2]
+        let path = '/images/albumPlaceholder.png'
+        if (album.albumArtPath) {
+            const arr = album.albumArtPath.split('\\')
+            path = "/" + arr[1] + "/" + arr[2]
+        }
+
         return {
             artistName: artist.name,
             albumDate: date.toLocaleString('default', { month: "long" }) + " " + date.getUTCDate() + ", " + date.getUTCFullYear(),

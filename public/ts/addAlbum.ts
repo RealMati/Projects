@@ -1,4 +1,4 @@
-(document.getElementById('add'))asHTMLDivElement.addEventListener('click', async (event: Event) => {
+(document.getElementById('add') as HTMLButtonElement).addEventListener('click', async (event: Event) => {
     try {
         event.preventDefault();
 

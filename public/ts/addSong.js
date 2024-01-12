@@ -35,8 +35,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var _this = this;
-document.getElementById('add').addEventListener('click', function (event) { return __awaiter(_this, void 0, void 0, function () {
-    var urlParts, albumId, formData, response, errorMessage, error_1, result, error_2;
+document.getElementById('addSongForm').addEventListener('submit', function (event) { return __awaiter(_this, void 0, void 0, function () {
+    var urlParts, albumId, nameField, file, formData, fileName, arr, response, errorMessage, error_1, result, error_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -44,13 +44,26 @@ document.getElementById('add').addEventListener('click', function (event) { retu
                 event.preventDefault();
                 urlParts = window.location.pathname.split('/');
                 albumId = urlParts[urlParts.length - 1];
+                nameField = document.getElementById('songNameEl');
+                file = document.getElementById('fileEl');
                 formData = new FormData(document.querySelector('form'));
+                if (!nameField.value) {
+                    alert('Name can not be empty');
+                    return [2 /*return*/];
+                }
+                fileName = formData.get('song').name;
+                if (!fileName) {
+                    alert('Please enter a file');
+                    return [2 /*return*/];
+                }
+                arr = fileName.split('.');
+                if (arr[arr.length - 1] !== 'mp3' && arr[arr.length - 1] !== 'wav') {
+                    alert('Only .mp3 and .wav files are acceptable');
+                    return [2 /*return*/];
+                }
                 return [4 /*yield*/, fetch("http://localhost:3000/albums/songs/".concat(albumId), {
                         method: 'POST',
-                        body: formData,
-                        headers: {
-                        // Add any necessary headers here
-                        },
+                        body: formData
                     })];
             case 1:
                 response = _a.sent();
