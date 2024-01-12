@@ -205,9 +205,6 @@ color: white;
   object-fit: cover;
 }
 
-.music-card:hover {
-  width: calc(100% - 20px); 
-}
 
 .music-card div {
   padding: 15px;

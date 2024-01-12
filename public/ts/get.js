@@ -46,7 +46,7 @@ function renderAlbums(albums) {
           <h2>${album.title}</h2>
           <p>Genre: ${album.genre}</p>
           <p>Description: ${album.description}</p>
-          <p type="date">Date: ${new Date(album.Date).toLocaleDateString()}</p>
+          <p>Date: ${new Date(album.date).toLocaleDateString()}</p>
         </div>
       `;
   
