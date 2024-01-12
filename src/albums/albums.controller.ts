@@ -20,12 +20,35 @@ export class AlbumsController {
 
     @Get('/manage')
     @Render('artist-home')
-    getPage() { }
+    async getPage() {
+        const albumsData = await this.albumService.getAllAlbums(); // Fetch albums data from the service
+
+        return { albums: albumsData }; // Pass albums data to the view
+    }
 
     @Get(':id')
     @Render('album-page')
     async findAlbumById(@Param('id') id: string): Promise<Album> {
         return this.albumService.findById(id)
+    }
+
+    @Get('images/:id')
+    async getAlbumArt(@Param('id') id: string, @Res() res: Response): Promise<void> {
+      try {
+        const result = await this.albumService.getAlbumArtPath(id); // Update to use albumService
+        if (!result) {
+          res.status(404).send('Album not found');
+          return;
+        }
+  
+        // Set appropriate content type based on your image type
+        res.contentType('image/jpeg'); // Update with your image type
+  
+        // Send the image file
+        res.sendFile(result);
+      } catch (error) {
+        res.status(500).send('Internal Server Error');
+      }
     }
 
     @Post()
@@ -91,4 +114,7 @@ export class AlbumsController {
     async removeSong(@Param('id') id: string, @Req() req: Request) {
         return await this.albumService.removeSong(id, req)
     }
+
+
+
 }
