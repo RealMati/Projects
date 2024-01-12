@@ -76,6 +76,11 @@ body {
   padding: 10px;
   border-radius: 10px;
 }
+
+#modalContainer {
+  display: none;
+
+}
 .main-container__musics {
   display: flex;
   flex-wrap: wrap;
