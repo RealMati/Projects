@@ -1,6 +1,7 @@
 # Masinko - a REST API for a music retail service
 **Final project for Web Programming**
 ### Used Stacks: Tailwind CSS, NestJS, ExpressJS and MongoDB
+Collaborated project of 4
 
 ### Description
 Masinko is a web-based music-sharing platform where artists can upload their works to a public platform where tracks are downloaded and rated by a general audience. The platform is motivated by the current musical atmosphere in which big streaming platforms continue to rise while pushing the most established musicians and bands without making special provisions for underground/local scenes. Music is a big part of culture, and we believe that the general trend toward Western
